@@ -94,5 +94,6 @@
             AuthenticationMethods publickey
             ```
         * Start/enable `sshd.service`
+    * To allow `power-service` to login during a scheduled shutdown, comment out `auth requisite pam_nologin.so` and `account required pam_nologin.so` from /etc/pam.d/system-login
     * Create ssh keypair for `ethan`. Install IoT server public key for `power-service`.
     * Mount additional "~" drives, fixing user:group ownership to `ethan:ethan` and adding `chattr +C` where applicable
