@@ -77,11 +77,12 @@
         * `passwd ethan`
         * In /etc/sudoers add `ethan ALL=(ALL:ALL) ALL`
     * Power service user: no sudo password required for shutdown/reboot/hibernate commands
-        * `useradd power-service`
+        * `useradd -m -d /home/.power-service power-service`
         * `passwd power-service`
         * In /etc/sudoers add the following:
         ```
-        Cmnd_Alias  POWER = /usr/bin/shutdown -h, /usr/bin/shutdown -r, /usr/bin/systemctl hibernate
+        Cmnd_Alias  POWER = /usr/bin/shutdown -h, /usr/bin/shutdown -r, /usr/bin/shutdown -c, /usr/bin/systemctl hibernate
+        power-service ALL=(ALL:ALL) !ALL
         power-service ALL=(ALL:ALL) NOPASSWD: POWER
         ```
     * Configure OpenSSH
@@ -94,8 +95,9 @@
                 ```
             * Ensure root access is disabled: `PermitRootLogin no`
             * Start/enable `sshd.service`
-    * Create ssh keypairs for `ethan` and `power-service`. Make 3 keypairs for `power-service`, one for each command:
+    * Create ssh keypairs for `ethan` and `power-service`. Make 4 keypairs for `power-service`, one for each command:
         * shutdown: `command="/usr/bin/sudo /usr/bin/shutdown -h"`
         * reboot: `command="/usr/bin/sudo /usr/bin/shutdown -r"`
+        * cancel: `command="/usr/bin/sudo /usr/bin/shutdown -c"`
         * hibernate: `command="/usr/bin/systemctl hibernate"`
     * Mount additional "~" drives, fixing user:group ownership to `ethan:ethan` and adding `chattr +C` where applicable
