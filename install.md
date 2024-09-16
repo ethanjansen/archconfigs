@@ -23,7 +23,7 @@
 * Install Boot Loader
     * `pacman -S grub efibootmgr`
     * `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB`
-    * Edit /etc/default/grub by removing `quiet` and adding `rootflags=subvol=root` to `GRUB_CMDLINE_LINUX_DEFAULT`. Also uncomment `GRUB_DISABLE_SUBMENU=y` and add `GRUB_TOP_LEVEL="/boot/vmlinuz-linux"`.
+    * Edit /etc/default/grub by removing `quiet` and adding `rootflags=subvol=root ipv6.disable_ipv6=1` to `GRUB_CMDLINE_LINUX_DEFAULT`. Also uncomment `GRUB_DISABLE_SUBMENU=y` and add `GRUB_TOP_LEVEL="/boot/vmlinuz-linux"`.
     * Add the following to /etc/grub.d/40_custom:
      ```
     menuentry "System Shutdown" {
@@ -53,6 +53,10 @@
 
     [Network]
     DHCP=ipv4
+    DNS=192.168.1.2
+
+    [DHCPv4]
+    UseDNS=false
     ```
     * For Wake-On-LAN, create /etc/systemd/network/50-wired.link with contents:
     ```
@@ -64,5 +68,6 @@
     MACAddressPolicy=persistent
     WakeOnLan=magic
     ```
+    * `ln -sf ../run/systemd/resolve/stub-resolv.conf /etc/resolv.conf`
     * Start time sync daemon: `timedatectl set-ntp true`
     * Reboot
