@@ -26,18 +26,24 @@
             * NOCOW
         * *Volume 7:* games
             * mount point: /mnt/games
+            * owner: ethan:ethan
 * **Disk 2 (2TB): (partitionless) btrfs vms-scratch**
     * *Volume 1:* vms
         * mount point: /mnt/vms
         * NOCOW for virtual disks
+        * owner: ethan:ethan
     * *Volume 2:* scratch
         * mount point: /mnt/scratch
+        * owner: ethan:ethan
 * **Disk 3 (6TB): (partitionless) btrfs data**
     * *Volume 1:* data
         * mount point: ~/Data
         * Make symlinks for ~/Pictures, ~/Videos, ~/Documents, ...
+        * owner: ethan:ethan
     * *Volume 2:* downloads
         * mount point: ~/Downloads
+        * owner: ethan:ethan
     * *Volume 3:* gameBackups
         * mount point: /mnt/gameBackups
+        * owner: ethan:ethan
 
