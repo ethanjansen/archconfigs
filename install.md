@@ -42,4 +42,27 @@
     * `shutdown -r now`
 
 ## Post-Installation
-* Enable hibernation
+* Configure hibernation
+    * Set `AllowSuspend=no` and `HibernateMode=shutdown` under `[Sleep]` in /etc/systemd/sleep.conf.d/hibernate.conf. The directory needs to be created first.
+* Networking, Wake-On-LAN, and Time Synchronization
+    * Start and enable `systemd-resolved.service` and `systemd-networkd.service`
+    * Create /etc/systemd/network/20-wired.network with contents:
+    ```
+    [Match]
+    Name=enp6s0
+
+    [Network]
+    DHCP=ipv4
+    ```
+    * For Wake-On-LAN, create /etc/systemd/network/50-wired.link with contents:
+    ```
+    [Match]
+    MACAddress=aa:bb:cc:dd:ee:ff
+
+    [Link]
+    NamePolicy=kernel database onboard slot path
+    MACAddressPolicy=persistent
+    WakeOnLan=magic
+    ```
+    * Start time sync daemon: `timedatectl set-ntp true`
+    * Reboot
