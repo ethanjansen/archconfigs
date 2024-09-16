@@ -4,6 +4,7 @@
 
 * **Disk 1 (2TB): Linux Install**
     * *Partition 1 (1GB):* FAT32 EFI System Partition
+        * mount point: /boot
     * *Partition 2 (48GB):* SWAP
     * *Partition 3 (remainder of disk):* btrfs linuxInstall
         * *Volume 1:* root

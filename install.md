@@ -1,0 +1,45 @@
+# Arch Install
+### Ethan Jansen
+### 09/15/2024
+
+## First Setup
+* [Disk Partitioning/Mounting](./drives.md)
+    * Make sparse directory structure before mounting. Apply NOCOW attributes with `chattr +C`.
+        * Can view these attributes later with `lsattr`.
+    * mount partitons in "~" after install.
+* Install Base Packages
+    * `pacstrap -K /mnt base linux linux-lts linux-firmware amd-ucode btrfs-progs exfatprogs sudo nano vim man-db man-pages texinfo screen htop git rsync openssh`
+* Initial Config
+    * `genfstab -U /mnt >> /mnt/etc/fstab`
+    * `arch-chroot /mnt`
+    * `ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime`
+    * `hwclock --systohc`
+    * Uncomment `en_US.UTF-8 UTF-8` from /etc/locale.gen and generate locales: `locale-gen`
+    * `echo "LANG=en_US.UTF-8" > /etc/locale.conf`
+    * `echo ethandesktop > /etc/hostname`
+    * Set root password: `passwd`
+    * To enable hibernation, add the `resume` hook to /etc/mkinitcpio.conf.
+    * `mkinitcpio -P`
+* Install Boot Loader
+    * `pacman -S grub efibootmgr`
+    * `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB`
+    * Edit /etc/default/grub by removing `quiet` and adding `rootflags=subvol=root` to `GRUB_CMDLINE_LINUX_DEFAULT`. Also uncomment `GRUB_DISABLE_SUBMENU=y` and add `GRUB_TOP_LEVEL="/boot/vmlinuz-linux"`.
+    * Add the following to /etc/grub.d/40_custom:
+     ```
+    menuentry "System Shutdown" {
+	    echo "System shutting down..."
+	    halt
+    }
+    menuentry "System Restart" {
+	    echo "System rebooting..."
+	    reboot
+    }
+     ```
+    * (Re)generate grub config: `grub-mkconfig -o /boot/grub/grub.cfg`
+* Unmount and Reboot!
+    * Exit the chroot environment: `exit`
+    * Unmount the install: `umount -R /mnt`
+    * `shutdown -r now`
+
+## Post-Installation
+* Enable hibernation
