@@ -94,9 +94,5 @@
             AuthenticationMethods publickey
             ```
         * Start/enable `sshd.service`
-    * Create ssh keypairs for `ethan` and `power-service`. Make 4 keypairs for `power-service`, one for each command:
-        * shutdown: `command="/usr/bin/sudo /usr/bin/shutdown -h"`
-        * reboot: `command="/usr/bin/sudo /usr/bin/shutdown -r"`
-        * cancel: `command="/usr/bin/sudo /usr/bin/shutdown -c"`
-        * hibernate: `command="/usr/bin/systemctl hibernate"`
+    * Create ssh keypair for `ethan`. Install IoT server public key for `power-service`.
     * Mount additional "~" drives, fixing user:group ownership to `ethan:ethan` and adding `chattr +C` where applicable
