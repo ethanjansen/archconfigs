@@ -86,15 +86,14 @@
         power-service ALL=(ALL:ALL) NOPASSWD: POWER
         ```
     * Configure OpenSSH
-        * In /etc/ssh/sshd_config:
-            * Change default port
-            * Only allow public key authorization:
-                ```
-                PasswordAuthentication no
-                AuthenticationMethods publickey
-                ```
-            * Ensure root access is disabled: `PermitRootLogin no`
-            * Start/enable `sshd.service`
+        * Create /etc/ssh/sshd_config.d/50-desktop.conf:
+            ```
+            Port ####
+            PermitRootLogin no
+            PasswordAuthentication no
+            AuthenticationMethods publickey
+            ```
+        * Start/enable `sshd.service`
     * Create ssh keypairs for `ethan` and `power-service`. Make 4 keypairs for `power-service`, one for each command:
         * shutdown: `command="/usr/bin/sudo /usr/bin/shutdown -h"`
         * reboot: `command="/usr/bin/sudo /usr/bin/shutdown -r"`
