@@ -4,11 +4,11 @@
 
 ## First Setup
 * [Disk Partitioning/Mounting](./drives.md)
-    * Make sparse directory structure before mounting. Apply NOCOW attributes with `chattr +C`.
+    * Make sparse directory structure before mounting. Apply NOCOW attributes with `chattr +C` before and after mounting partitions.
         * Can view these attributes later with `lsattr`.
     * mount partitons in "~" after install.
 * Install Base Packages
-    * `pacstrap -K /mnt base linux linux-lts linux-firmware amd-ucode btrfs-progs exfatprogs sudo nano vim man-db man-pages texinfo screen htop git rsync openssh`
+    * `pacstrap -K /mnt base linux linux-lts linux-firmware amd-ucode btrfs-progs exfatprogs sudo nano vim man-db man-pages texinfo screen htop git rsync openssh which`
 * Initial Config
     * `genfstab -U /mnt >> /mnt/etc/fstab`
     * `arch-chroot /mnt`
@@ -71,3 +71,31 @@
     * `ln -sf ../run/systemd/resolve/stub-resolv.conf /etc/resolv.conf`
     * Start time sync daemon: `timedatectl set-ntp true`
     * Reboot
+* User Setup
+    * Normal user
+        * `useradd -m ethan`
+        * `passwd ethan`
+        * In /etc/sudoers add `ethan ALL=(ALL:ALL) ALL`
+    * Power service user: no sudo password required for shutdown/reboot/hibernate commands
+        * `useradd power-service`
+        * `passwd power-service`
+        * In /etc/sudoers add the following:
+        ```
+        Cmnd_Alias  POWER = /usr/bin/shutdown -h, /usr/bin/shutdown -r, /usr/bin/systemctl hibernate
+        power-service ALL=(ALL:ALL) NOPASSWD: POWER
+        ```
+    * Configure OpenSSH
+        * In /etc/ssh/sshd_config:
+            * Change default port
+            * Only allow public key authorization:
+                ```
+                PasswordAuthentication no
+                AuthenticationMethods publickey
+                ```
+            * Ensure root access is disabled: `PermitRootLogin no`
+            * Start/enable `sshd.service`
+    * Create ssh keypairs for `ethan` and `power-service`. Make 3 keypairs for `power-service`, one for each command:
+        * shutdown: `command="/usr/bin/sudo /usr/bin/shutdown -h"`
+        * reboot: `command="/usr/bin/sudo /usr/bin/shutdown -r"`
+        * hibernate: `command="/usr/bin/systemctl hibernate"`
+    * Mount additional "~" drives, fixing user:group ownership to `ethan:ethan` and adding `chattr +C` where applicable
