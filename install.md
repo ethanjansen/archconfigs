@@ -133,12 +133,12 @@
     * Install `snapper`
     * Create configs (located in /etc/snapper/configs/) for each subvolume that should have regular snapshots:
         ```
-        snapper -c root create-config /
-        snapper -c home create-config /home
-        snapper -c games create-config /mnt/games
-        snapper -c vms create-config /mnt/vms
-        snapper -c data create-config /home/ethan/Data
-        snapper -c gameBackups create-config /mnt/gameBackups
+        sudo snapper -c root create-config /
+        sudo snapper -c home create-config /home
+        sudo snapper -c games create-config /mnt/games
+        sudo snapper -c vms create-config /mnt/vms
+        sudo snapper -c data create-config /home/ethan/Data
+        sudo snapper -c gameBackups create-config /mnt/gameBackups
         ```
         * For the above subvolumes, use the config (leave the rest default):
             ```
@@ -166,7 +166,7 @@
             TIMELINE_LIMIT_YEARLY="0"
             ```
         ```
-        snapper -c scratch create-config /mnt/scratch
+        sudo snapper -c scratch create-config /mnt/scratch
         ```
         * For the scratch subvolume, use the config (leave the rest default):
             ```
@@ -193,4 +193,6 @@
             TIMELINE_LIMIT_QUARTERLY="0"
             TIMELINE_LIMIT_YEARLY="0"
             ```
+    * Check configurations with `sudo snapper list-configs`
     * Enable/Start snapper-timeline.timer and snapper-cleanup.timer
+    * Check snapshot creation/retention with `sudo snapper -c {config} list` after some time
