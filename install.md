@@ -101,3 +101,28 @@
     * Set name and email: `user.name` and `user.email`
     * Default editor: `core.editor`
     * Default branch name: `init.defaultBranch`
+* Automate /etc/pacman.d/mirrorlist with `reflector`
+    * Install `reflector`
+    * Add to the Systemd configuration in /etc/xdg/reflector/reflector.conf:
+        ```
+        --country 'United States,'
+        ```
+    * Start/enable the timer:
+        ```
+        sudo systemctl enable reflector.timer
+        sudo systemctl start reflector.timer
+        ```
+    * Valid by running immediately: `systemctl start reflector.service`
+* `pikaur` pacman Wrapper Install - (This will install python if not done already)
+    * Install `base-devel` and `devtools` (and optionally `bat`)
+    * Create ~/builds directory for manual AUR builds.
+    * Clone `pikaur` into builds: https://aur.archlinux.org/pikaur.git
+    * Read the PKGBUILD
+    * Make install with `makepkg -si`
+    * Check `pikaur` with `sudo pikaur -Syu`
+    * Clean builds directory
+* Numlock setup
+    * Install `mkinitcpio-numlock` from AUR
+    * Add the `numlock` hook to /etc/mkinitcpio.conf before `block`
+    * Regenerate initramfs: `sudo mkinitcpio -P`
+    * Reboot to test
