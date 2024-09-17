@@ -15,15 +15,19 @@
         * *Volume 3:* tmp
             * mount point: /var/tmp
             * NOCOW
+            * no snapper snapshots
         * *Volume 4:* log
             * mount point: /var/log
             * NOCOW
+            * no snapper snapshots
         * *Volume 5:* cache
             * mount point: /var/cache
             * NOCOW
+            * no snapper snapshots
         * *Volume 6:* spool
             * mount point: /var/spool
             * NOCOW
+            * no snapper snapshots
         * *Volume 7:* games
             * mount point: /mnt/games
             * owner: ethan:ethan
@@ -43,6 +47,7 @@
     * *Volume 2:* downloads
         * mount point: ~/Downloads
         * owner: ethan:ethan
+        * no snapper snapshots
     * *Volume 3:* gameBackups
         * mount point: /mnt/gameBackups
         * owner: ethan:ethan

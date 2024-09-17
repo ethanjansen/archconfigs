@@ -101,6 +101,8 @@
     * Set name and email: `user.name` and `user.email`
     * Default editor: `core.editor`
     * Default branch name: `init.defaultBranch`
+
+## System Setup
 * Automate /etc/pacman.d/mirrorlist with `reflector`
     * Install `reflector`
     * Add to the Systemd configuration in /etc/xdg/reflector/reflector.conf:
@@ -121,8 +123,74 @@
     * Make install with `makepkg -si`
     * Check `pikaur` with `sudo pikaur -Syu`
     * Clean builds directory
+    * At this point ~/.cache should be created, ensure `chattr +C` is set
 * Numlock setup
     * Install `mkinitcpio-numlock` from AUR
     * Add the `numlock` hook to /etc/mkinitcpio.conf before `block`
     * Regenerate initramfs: `sudo mkinitcpio -P`
     * Reboot to test
+* BTRFS Snapshots
+    * Install `snapper`
+    * Create configs (located in /etc/snapper/configs/) for each subvolume that should have regular snapshots:
+        ```
+        snapper -c root create-config /
+        snapper -c home create-config /home
+        snapper -c games create-config /mnt/games
+        snapper -c vms create-config /mnt/vms
+        snapper -c data create-config /home/ethan/Data
+        snapper -c gameBackups create-config /mnt/gameBackups
+        ```
+        * For the above subvolumes, use the config (leave the rest default):
+            ```
+            # run daily number cleanup - for pre-post snapshots (currently unused)
+            NUMBER_CLEANUP="yes"
+
+            # limit for number cleanup
+            NUMBER_MIN_AGE="604800" # 7 days
+            NUMBER_LIMIT="10"
+            NUMBER_LIMIT_IMPORTANT="10"
+
+            # create hourly snapshots
+            TIMELINE_CREATE="yes"
+
+            # cleanup hourly snapshots after some time
+            TIMELINE_CLEANUP="yes"
+
+            # limits for timeline cleanup
+            TIMELINE_MIN_AGE="604800" # 7 days
+            TIMELINE_LIMIT_HOURLY="168" # 7 days
+            TIMELINE_LIMIT_DAILY="30" # 1 month
+            TIMELINE_LIMIT_WEEKLY="0"
+            TIMELINE_LIMIT_MONTHLY="0"
+            TIMELINE_LIMIT_QUARTERLY="0"
+            TIMELINE_LIMIT_YEARLY="0"
+            ```
+        ```
+        snapper -c scratch create-config /mnt/scratch
+        ```
+        * For the scratch subvolume, use the config (leave the rest default):
+            ```
+            # run daily number cleanup - for pre-post snapshots (currently unused)
+            NUMBER_CLEANUP="yes"
+
+            # limit for number cleanup
+            NUMBER_MIN_AGE="10800" # 3 hours
+            NUMBER_LIMIT="0"
+            NUMBER_LIMIT_IMPORTANT="0"
+
+            # create hourly snapshots
+            TIMELINE_CREATE="yes"
+
+            # cleanup hourly snapshots after some time
+            TIMELINE_CLEANUP="yes"
+
+            # limits for timeline cleanup
+            TIMELINE_MIN_AGE="10800" # 3 hours
+            TIMELINE_LIMIT_HOURLY="3"
+            TIMELINE_LIMIT_DAILY="0"
+            TIMELINE_LIMIT_WEEKLY="0"
+            TIMELINE_LIMIT_MONTHLY="0"
+            TIMELINE_LIMIT_QUARTERLY="0"
+            TIMELINE_LIMIT_YEARLY="0"
+            ```
+    * Enable/Start snapper-timeline.timer and snapper-cleanup.timer
