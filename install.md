@@ -97,3 +97,7 @@
     * To allow `power-service` to login during a scheduled shutdown, comment out `auth requisite pam_nologin.so` and `account required pam_nologin.so` from /etc/pam.d/system-login
     * Create ssh keypair for `ethan`. Install IoT server public key for `power-service`.
     * Mount additional "~" drives, fixing user:group ownership to `ethan:ethan` and adding `chattr +C` where applicable
+* Configure git: `git config --global {setting} {value}`
+    * Set name and email: `user.name` and `user.email`
+    * Default editor: `core.editor`
+    * Default branch name: `init.defaultBranch`
