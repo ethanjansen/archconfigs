@@ -196,3 +196,10 @@
     * Check configurations with `sudo snapper list-configs`
     * Enable/Start snapper-timeline.timer and snapper-cleanup.timer
     * Check snapshot creation/retention with `sudo snapper -c {config} list` after some time
+* Audio
+    * Install `pipewire` and `wireplumber`
+* GPU Driver Configuration
+    * Install
+    * Detect GPUs and disable 2nd GPU using VFIO driver stub
+* GUI: Hyprland
+    * Install `polkit`, `hyprland`, `xdg-desktop-portal-hyprland`
