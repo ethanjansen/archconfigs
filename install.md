@@ -197,9 +197,72 @@
     * Enable/Start snapper-timeline.timer and snapper-cleanup.timer
     * Check snapshot creation/retention with `sudo snapper -c {config} list` after some time
 * Audio
-    * Install `pipewire` and `wireplumber`
+    * Install `pipewire`, `wireplumber`, `pipewire-pulse`, and `pavucontrol`
 * GPU Driver Configuration
-    * Install
-    * Detect GPUs and disable 2nd GPU using VFIO driver stub
+    * Install Drivers: `mesa`, `vulkan-radeon`, and `libva-mesa-driver`
+    * Install monitoring: `nvtop`
+    * Disable passthrough GPU on host with VFIO driver:
+        * Determine IOMMU groups/PCI IDs, and GPU IDs (ensure passthrough and host GPUs are in separate IOMMU groups). Use the script:
+            ```
+            #!/bin/bash
+            shopt -s nullglob
+            for g in $(find /sys/kernel/iommu_groups/* -maxdepth 0 -type d | sort -V); do
+                echo "IOMMU Group ${g##*/}:"
+                for d in $g/devices/*; do
+                    echo -e "\t$(lspci -nns ${d##*/})"
+                done;
+            done;
+            ```
+        * In /etc/modprobe.d/vfio.conf add (where `{x}` is the list of ids, {vendor}:{device}, associated with the passthrough GPU IOMMU):
+            ```
+            softdep drm pre: vfio-pci
+
+            options vfio-pci ids={x}
+            ```
+        * In /etc/modprobe.d/amdgpu.conf add: `blacklist radeon`
+        * In /etc/mkinitcpio.conf, ensure `modconf` is included as a HOOK and that `vfio_pci vfio vfio_iommu_type1 amdgpu` (ensure `vfio` modules precede `amdgpu` and that `radeon` is not included) are included as MODULE
+        * Regenerate initramfs and reboot: `mkinitcpio -P`
+        * Ensure drivers are configured correctly with `lspci -nnk -d {xx:xx}`
+            * Where `{xx:xx}` corresponds to the GPU {vendor}:{device}
+            * Check that the passthrough GPU is using `vfio-pci` and the host GPU is using `amdgpu`
+    * Overclocking:
+        * Install `amdgpu-clocks-git`
+        * Run `printf 'amdgpu.ppfeaturemask=0x%x\n' "$(($(cat /sys/module/amdgpu/parameters/ppfeaturemask) | 0x4000))"` to determine the `amdgpu.ppfeature` kernel parameter setting required to enable overclocking
+            * In /etc/modprobe.d/amdgpu.conf add (where `{x}` is the hex value determined above): `options amdgpu ppfeaturemask={x}`
+            * Regenerate initramfs and reboot: `mkinitcpio -P`
+            * Enable `amdgpu-clocks` on boot: `sudo systemctl enable --now amdgpu-clocks`
+            * When overclocking, manually create the configuration file: /etc/default/amdgpu-custom-state.pci:xxxx:xx:xx.x
+                * "xxxx:xx:xx.x" refers to the cards PCI {domain}:{bus}:{dev}.{function} numbers which can be determined from `lspci -n`
+                * See https://github.com/sibradzic/amdgpu-clocks for overclocking reference
 * GUI: Hyprland
-    * Install `polkit`, `hyprland`, `xdg-desktop-portal-hyprland`
+    * Install Dependencies: `polkit`
+    * Install Display Manager/Lockscreen: `greetd`, `hyprlock`
+        * Configure `greetd` for autologin and then auto run-once `hyprlock` at start
+    * Install hyprland: `hyprland`
+    * Install additional software (https://wiki.hyprland.org/Useful-Utilities/Must-have/):
+        * GTK theming: `nwg-look`
+        * Qt support: `qt5-wayland`, `qt6-wayland`, `qt5ct`, `qt6ct`
+        * Terminal Emulator: `wezterm`
+        * Screen share: `xdg-desktop-portal-hyprland`
+        * Wallpaper: `hyprpaper`
+        * Idle Manager: `hypridle`
+        * Status bar: `waybar`
+        * Notifications: `mako`
+        * Application Launcher: `rofi-wayland`
+        * File Manager: `nnn`
+        * Editors: `vim`, `neovim`, `nano`
+        * Authentication Agent: `polkit-kde-agent`
+        * Clipboard Manager: `wl-clipboard`, `clipse`
+        * Screenshot: `hyprpicker`, `hyprshot`
+    * Force apps to use wayland. Add `--enable-features=UseOzonePlatform --ozone-platform=wayland` to the applications .conf file
+        * For electron apps use ~/.config/electron-flags.conf
+
+## Additional Software
+* (VS)Code: `code`, `code-marketplace`, `code-features`
+    * Enable wayland rendering in config
+* Browser: `chromium`
+    * Enable wayland rendering in config
+    * Enable Google synchrnozation via Oauth
+    * Enable scrolling tabs
+* Office: `libreoffice`, `texlive-latexextra`, `texlive-fontsrecommended`, `texlive-bibtexextra`, `texlive-luatex`, `biber`
+* Discord: `webcord`
