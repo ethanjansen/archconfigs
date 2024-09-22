@@ -242,7 +242,7 @@
     * Install additional software (https://wiki.hyprland.org/Useful-Utilities/Must-have/):
         * GTK theming: `nwg-look`
         * Qt support: `qt5-wayland`, `qt6-wayland`, `qt5ct`, `qt6ct`
-        * Terminal Emulator: `wezterm`
+        * Terminal Emulator: `kitty`
         * Screen share: `xdg-desktop-portal-hyprland`
         * Wallpaper: `hyprpaper`
         * Idle Manager: `hypridle`
