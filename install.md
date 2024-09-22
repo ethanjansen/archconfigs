@@ -197,7 +197,7 @@
     * Enable/Start snapper-timeline.timer and snapper-cleanup.timer
     * Check snapshot creation/retention with `sudo snapper -c {config} list` after some time
 * Audio
-    * Install `pipewire`, `wireplumber`
+    * Install `pipewire`, `wireplumber`, `pipewire-jack`
 * GPU Driver Configuration
     * Install Drivers: `mesa`, `vulkan-radeon`, and `libva-mesa-driver`
     * Install monitoring: `nvtop`
@@ -221,7 +221,7 @@
             ```
         * In /etc/modprobe.d/amdgpu.conf add: `blacklist radeon`
         * In /etc/mkinitcpio.conf, ensure `modconf` is included as a HOOK and that `vfio_pci vfio vfio_iommu_type1 amdgpu` (ensure `vfio` modules precede `amdgpu` and that `radeon` is not included) are included as MODULE
-        * Regenerate initramfs and reboot: `mkinitcpio -P`
+        * Regenerate initramfs and reboot: `sudo mkinitcpio -P`
         * Ensure drivers are configured correctly with `lspci -nnk -d {xx:xx}`
             * Where `{xx:xx}` corresponds to the GPU {vendor}:{device}
             * Check that the passthrough GPU is using `vfio-pci` and the host GPU is using `amdgpu`
@@ -229,16 +229,16 @@
         * Install `amdgpu-clocks-git`
         * Run `printf 'amdgpu.ppfeaturemask=0x%x\n' "$(($(cat /sys/module/amdgpu/parameters/ppfeaturemask) | 0x4000))"` to determine the `amdgpu.ppfeature` kernel parameter setting required to enable overclocking
             * In /etc/modprobe.d/amdgpu.conf add (where `{x}` is the hex value determined above): `options amdgpu ppfeaturemask={x}`
-            * Regenerate initramfs and reboot: `mkinitcpio -P`
+            * Regenerate initramfs and reboot: `sudo mkinitcpio -P`
             * Enable `amdgpu-clocks` on boot: `sudo systemctl enable --now amdgpu-clocks`
             * When overclocking, manually create the configuration file: /etc/default/amdgpu-custom-state.pci:xxxx:xx:xx.x
                 * "xxxx:xx:xx.x" refers to the cards PCI {domain}:{bus}:{dev}.{function} numbers which can be determined from `lspci -n`
                 * See https://github.com/sibradzic/amdgpu-clocks for overclocking reference
 * GUI: Hyprland
     * Install Dependencies: `polkit`
+    * Install hyprland: `hyprland`
     * Install Display Manager/Lockscreen: `greetd`, `hyprlock`
         * Configure `greetd` for autologin and then auto run-once `hyprlock` at start
-    * Install hyprland: `hyprland`
     * Install additional software (https://wiki.hyprland.org/Useful-Utilities/Must-have/):
         * GTK theming: `nwg-look`
         * Qt support: `qt5-wayland`, `qt6-wayland`, `qt5ct`, `qt6ct`
@@ -264,5 +264,6 @@
     * Enable wayland rendering in config
     * Enable Google synchrnozation via Oauth
     * Enable scrolling tabs
-* Office: `libreoffice`, `texlive-latexextra`, `texlive-fontsrecommended`, `texlive-bibtexextra`, `texlive-luatex`, `biber`
+* Office: `libreoffice-fresh`, `libreoffice-extension-texmaths`, `libreoffice-extension-writer2latex`, `hunspell`, `hunspell-en_us`, `hyphen`, `hyphen-en`, `texlive-latexextra`, `texlive-fontsrecommended`, `texlive-bibtexextra`, `texlive-luatex`, `biber`, `aspell`, `aspell-en`
+* Shell Check: `shellcheck`
 * Discord: `webcord`

@@ -8,6 +8,7 @@
     * Devices in same IOMMU: None
 * PCI ID: 0000:10:00.0
 * Device ID: 1002:744c
+* Overclocking `ppfeaturemask` option: 0xfff7ffff
 
 ## Passthrough GPU
 * Model: XFX AMD Radeon RX 5700 XT THICC III
