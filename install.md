@@ -197,7 +197,7 @@
     * Enable/Start snapper-timeline.timer and snapper-cleanup.timer
     * Check snapshot creation/retention with `sudo snapper -c {config} list` after some time
 * Audio
-    * Install `pipewire`, `wireplumber`, `pipewire-pulse`, and `pavucontrol`
+    * Install `pipewire`, `wireplumber`
 * GPU Driver Configuration
     * Install Drivers: `mesa`, `vulkan-radeon`, and `libva-mesa-driver`
     * Install monitoring: `nvtop`
