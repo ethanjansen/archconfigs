@@ -242,7 +242,7 @@
     * Install additional software (https://wiki.hyprland.org/Useful-Utilities/Must-have/):
         * GTK theming: `nwg-look`
         * Qt support: `qt5-wayland`, `qt6-wayland`, `qt5ct`, `qt6ct`
-        * Terminal Emulator: `kitty`
+        * Terminal Emulator: `kitty`, `icat`
         * Screen share: `xdg-desktop-portal-hyprland`
         * Wallpaper: `hyprpaper`
         * Idle Manager: `hypridle`
@@ -254,6 +254,8 @@
         * Authentication Agent: `polkit-kde-agent`
         * Clipboard Manager: `wl-clipboard`, `clipse`
         * Screenshot: `hyprpicker`, `hyprshot`
+    * Desktop configuration:
+        * `hyprland` see: [hyprland.conf](./hyprland.conf)
     * Force apps to use wayland. Add `--enable-features=UseOzonePlatform --ozone-platform=wayland` to the applications .conf file
         * For electron apps use ~/.config/electron-flags.conf
 

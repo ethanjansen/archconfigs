@@ -2,6 +2,11 @@
 ### Ethan Jansen
 ### 09/23/2024
 
+## Hyprland
+* Exit: `M`
+* Launch programs:
+    * Kitty: `q`
+
 ## Neovim
 * Navigation: `hjkl`
 * Exiting:
