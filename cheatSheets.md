@@ -38,6 +38,7 @@
     * After cursor: `p`
     * Before cursor: `P`
 * Yank/Copy: `y`
+    * Whole line: `yy`
 * "Go":
     * Go to bottom of file: `G`
     * Go to top of file: `gg`
