@@ -97,6 +97,12 @@
     * To allow `power-service` to login during a scheduled shutdown, comment out `auth requisite pam_nologin.so` and `account required pam_nologin.so` from /etc/pam.d/system-login
     * Create ssh keypair for `ethan`. Install IoT server public key for `power-service`.
     * Mount additional "~" drives, fixing user:group ownership to `ethan:ethan` and adding `chattr +C` where applicable
+    * Relax PAM faillock by modifying /etc/security/faillock.conf with the following:
+        ```
+        unlock_time = 600
+        fail_interval = 600
+        deny = 10
+        ```
 * Configure git: `git config --global {setting} {value}`
     * Set name and email: `user.name` and `user.email`
     * Default editor: `core.editor`
@@ -238,7 +244,9 @@
     * Install Dependencies: `polkit`
     * Install hyprland: `hyprland`
     * Install Display Manager/Lockscreen: `greetd`, `hyprlock`
-        * Configure `greetd` for autologin and then auto run-once `hyprlock` at start
+        * Enable `greetd.service` to start on boot
+        * To enable autologin: change /etc/greetd/config.toml to execute the command `Hyprland` as user `ethan`
+        * Ensure `hyprlock` is set to run-once in hyprland.conf
     * Install additional software (https://wiki.hyprland.org/Useful-Utilities/Must-have/):
         * GTK theming: `nwg-look`
         * Qt support: `qt5-wayland`, `qt6-wayland`, `qt5ct`, `qt6ct`
@@ -255,7 +263,9 @@
         * Clipboard Manager: `wl-clipboard`, `clipse`
         * Screenshot: `hyprpicker`, `hyprshot`
     * Desktop configuration:
-        * `hyprland` see: [hyprland.conf](./hyprland.conf)
+        * `hyprland` see: [hyprland.conf](./config/hypr/hyprland.conf), [hyprfont.conf](./config/fonts/hyprfont.conf), and [hyprcolor.conf](./config/colors/hyprcolor.conf)
+        * `hyprpaper` see: [hyprpaper.conf](./config/hypr/hyprpaper.conf)
+        * `hyprlock` see: [hyprlock.conf](./config/hypr/hyprlock.conf)
     * Force apps to use wayland. Add `--enable-features=UseOzonePlatform --ozone-platform=wayland` to the applications .conf file
         * For electron apps use ~/.config/electron-flags.conf
 
