@@ -248,13 +248,14 @@
         * To enable autologin: change /etc/greetd/config.toml to execute the command `Hyprland` as user `ethan`
         * Ensure `hyprlock` is set to run-once in hyprland.conf
     * Install additional software (https://wiki.hyprland.org/Useful-Utilities/Must-have/):
+        * Fonts: `nerd-fonts`
         * GTK theming: `nwg-look`
         * Qt support: `qt5-wayland`, `qt6-wayland`, `qt5ct`, `qt6ct`
         * Terminal Emulator: `kitty`, `icat`
         * Screen share: `xdg-desktop-portal-hyprland`
         * Wallpaper: `hyprpaper`
         * Idle Manager: `hypridle`
-        * Status bar: `waybar`
+        * Status bar: `waybar`, `otf-font-awesome`
         * Notifications: `mako`
         * Application Launcher: `rofi-wayland`
         * File Manager: `nnn`
