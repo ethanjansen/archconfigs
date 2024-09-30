@@ -44,6 +44,23 @@
 ## Post-Installation
 * Configure hibernation
     * Set `AllowSuspend=no` and `HibernateMode=shutdown` under `[Sleep]` in /etc/systemd/sleep.conf.d/hibernate.conf. The directory needs to be created first.
+    * Later, after configuring `hyprland` and `hyprlock`, enable lock screen after hibernation. Create the /etc/systemd/system/userLockHibernate@.service:
+        ```
+        [Unit]
+        Description=Lock Hyprland with Hyprlock on hibernate
+        Before=hibernate.target
+
+        [Service]
+        User=%I
+        Environment=XDG_RUNTIME_DIR=/run/user/1000
+        Type=forking
+        ExecStart=/home/ethan/.config/hypr/hyprlockOnHibernate.sh
+        ExecStartPost=/usr/bin/sleep 1
+
+        [Install]
+        WantedBy=hibernate.target
+        ```
+    * Enable `userLockHibernate@ethan.service`
 * Networking, Wake-On-LAN, and Time Synchronization
     * Start and enable `systemd-resolved.service` and `systemd-networkd.service`
     * Create /etc/systemd/network/20-wired.network with contents:
