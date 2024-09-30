@@ -224,6 +224,7 @@
 * GPU Driver Configuration
     * Install Drivers: `mesa`, `vulkan-radeon`, and `libva-mesa-driver`
     * Install monitoring: `nvtop`
+    * Install other utils: `libva-utils`
     * Disable passthrough GPU on host with VFIO driver:
         * Determine IOMMU groups/PCI IDs, and GPU IDs (ensure passthrough and host GPUs are in separate IOMMU groups). Use the script:
             ```
@@ -287,16 +288,24 @@
         * `rofi`:
             * Generate default `rofi` config by running `rofi -dump-config > ~/.config/rofi/config.rasi`
             * Apply theme by appending: `@theme "/usr/share/rofi/themes/Arc-Dark.rasi"`
-    * Force apps to use wayland. Add `--enable-features=UseOzonePlatform --ozone-platform=wayland` to the applications .conf file
+    * Force apps to use wayland:
         * For electron apps use ~/.config/electron-flags.conf
+            ```
+            --enable-features=WebRTCPipeWireCapturer
+            --ozone-platform-hint=auto
+            ```
 
 ## Additional Software
 * (VS)Code: `code`, `code-marketplace`, `code-features`
-    * Enable wayland rendering in config
+    * Enable wayland rendering: `cp ~/.config/electron-flags.conf ~/.config/code-flags.conf`
 * Browser: `chromium`
-    * Enable wayland rendering in config
-    * Enable Google synchrnozation via Oauth
-    * Enable scrolling tabs
+    * Add [~/.config/chromium-flags.conf](config/chromium-flags.conf)
+    * Set custom fonts in settings
+    * Enable experimental features in chrome://flags
+        * Fluent Scrollbars: Enabled
+        * Tab Scrolling: Enabled - tabs shrink to large size
+        * Tab Scrolling Overflow Indicator: Enabled - Fade
+        * Parallel downloading: Enabled
 * Office: `libreoffice-fresh`, `libreoffice-extension-texmaths`, `libreoffice-extension-writer2latex`, `hunspell`, `hunspell-en_us`, `hyphen`, `hyphen-en`, `texlive-latexextra`, `texlive-fontsrecommended`, `texlive-bibtexextra`, `texlive-luatex`, `biber`, `aspell`, `aspell-en`
 * Shell Check: `shellcheck`
 * Discord: `webcord`
