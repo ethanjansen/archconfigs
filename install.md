@@ -284,6 +284,9 @@
         * `hyprland` see: [hyprland.conf](./config/hypr/hyprland.conf), [hyprfont.conf](./config/fonts/hyprfont.conf), and [hyprcolor.conf](./config/colors/hyprcolor.conf)
         * `hyprpaper` see: [hyprpaper.conf](./config/hypr/hyprpaper.conf)
         * `hyprlock` see: [hyprlock.conf](./config/hypr/hyprlock.conf)
+        * `rofi`:
+            * Generate default `rofi` config by running `rofi -dump-config > ~/.config/rofi/config.rasi`
+            * Apply theme by appending: `@theme "/usr/share/rofi/themes/Arc-Dark.rasi"`
     * Force apps to use wayland. Add `--enable-features=UseOzonePlatform --ozone-platform=wayland` to the applications .conf file
         * For electron apps use ~/.config/electron-flags.conf
 
