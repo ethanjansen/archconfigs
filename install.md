@@ -44,47 +44,11 @@
 ## Post-Installation
 * Configure hibernation
     * Set `AllowSuspend=no` and `HibernateMode=shutdown` under `[Sleep]` in /etc/systemd/sleep.conf.d/hibernate.conf. The directory needs to be created first.
-    * Later, after configuring `hyprland` and `hyprlock`, enable lock screen after hibernation. Create the /etc/systemd/system/userLockHibernate@.service:
-        ```
-        [Unit]
-        Description=Lock Hyprland with Hyprlock on hibernate
-        Before=hibernate.target
-
-        [Service]
-        User=%I
-        Environment=XDG_RUNTIME_DIR=/run/user/1000
-        Type=simple
-        ExecStart=/home/ethan/.config/hypr/hyprlockOnHibernate.sh
-        ExecStartPost=/usr/bin/sleep 1
-
-        [Install]
-        WantedBy=hibernate.target
-        ```
+    * Later, after configuring `hyprland` and `hyprlock`, enable lock screen after hibernation. Create the [/etc/systemd/system/userLockHibernate@.service](./systemd/system/userLockHibernate@.service)
     * Enable `userLockHibernate@ethan.service`
 * Networking, Wake-On-LAN, and Time Synchronization
     * Start and enable `systemd-resolved.service` and `systemd-networkd.service`
-    * Create /etc/systemd/network/20-wired.network with contents:
-    ```
-    [Match]
-    Name=enp6s0
-
-    [Network]
-    DHCP=ipv4
-    DNS=192.168.1.2
-
-    [DHCPv4]
-    UseDNS=false
-    ```
-    * For Wake-On-LAN, create /etc/systemd/network/50-wired.link with contents:
-    ```
-    [Match]
-    MACAddress=aa:bb:cc:dd:ee:ff
-
-    [Link]
-    NamePolicy=kernel database onboard slot path
-    MACAddressPolicy=persistent
-    WakeOnLan=magic
-    ```
+    * Add the network configuration [files](./systemd/network) to /etc/systemd/network/. Be sure to add the host mac address for enp6s0 in [40-br0.netdev](./systemd/network/40-br0.netdev). This configures Wake-On-LAN for enp6s0, creates the bridge br0 off of enp6s0 and enables DHCPv4 wih the static DNS address of 192.168.1.2.
     * `ln -sf ../run/systemd/resolve/stub-resolv.conf /etc/resolv.conf`
     * Start time sync daemon: `timedatectl set-ntp true`
     * Reboot
@@ -311,14 +275,23 @@
             * Under Storage, stop and delete the default pool.
             * Add a new pool, named "QemuPool", type "dir", with target path "/mnt/vms/qemu/vdisks". After creation have it autostart on boot. Apply.
         * Configure virtual networks:
-            * Configure routed network, named "Routed", on 192.168.123.1/24
-            * Configure NAT network, named "NAT", on 192.168.122.1/24
+            * Delete default network
+            * Configure NAT network, named "NAT", with DHCP serving 192.168.122.0/24
+            * Configure Bridge network, named "Bridge" connected to br0 (created manually during network configuration). Use the custom xml (uuid should be added automatically if created with virt-manager):
+                ```
+                <network>
+                  <name>Bridge</name>
+                  <forward mode="bridge"/>
+                  <bridge name="br0"/>
+                </network>
+                ```
         * Tips:
             * To enable UEFI w/o secure boot domains, use the `UEFI x86_64: /usr/share/edk2/x64/OVMF_CODE.4m.fd` firmware.
             * To enable virtual 3D acceleration:
                 * Add Video hardware with "Model" as "Virtio". Then remove any other "Video" virtual hardware (within the sidebar).
                 * Go to "Display Spice" and set "Listen Type" to "None". Also tick the "OpenGL" checkbox and select the appropriate renderer.
                 * Click on "Video Virtio" and tick "3D Acceleration".
+            * Install virtio guest tools for windows: https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/
 
 ## Additional Software
 * (VS)Code: `code`, `code-marketplace`, `code-features`
