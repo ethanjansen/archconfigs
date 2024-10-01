@@ -1,0 +1,13 @@
+[Unit]
+Description=Lock Hyprland with Hyprlock on hibernate
+Before=hibernate.target
+
+[Service]
+User=%I
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+Type=simple
+ExecStart=/home/ethan/.config/hypr/hyprlockOnHibernate.sh
+ExecStartPost=/usr/bin/sleep 1
+
+[Install]
+WantedBy=hibernate.target

@@ -1,0 +1,7 @@
+[Match]
+OriginalName=enp6s0
+
+[Link]
+NamePolicy=kernel database onboard slot path
+MACAddressPolicy=persistent
+WakeOnLan=magic
