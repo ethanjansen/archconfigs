@@ -270,10 +270,19 @@
     * Reboot.
     * Change group ownership of /mnt/vms/qemu: `chown -R ethan:libvirt-qemu /mnt/vms/qemu`
         * Also recursively set all directory permssions in /mnt/vms/qemu to 775, and all (non-executable) file permissions to 664
+        * Do the same with /mnt/vms/ISOs
+    * Move libvirt VM config location (leave default ownserhip/permissions)
+        ```
+        sudo mv /etc/libvirt/qemu /mnt/vms/qemu/configs
+        sudo mv /etc/libvirt/storage /mnt/vms/qemu/storageConfigs
+        sudo ln -s /mnt/vms/qemu/configs /etc/libvirt/qemu
+        sudo ln -s /mnt/vms/qemu/storageConfigs /etc/libvirt/storage
+        ```
     * In virt-manager:
         * Configure /mnt/vms/qemu/vdisks storage pool:
-            * Under Storage, stop and delete the default pool.
+            * Under Storage, stop the default pool and uncheck autostart on boot (this cannot be deleted as it will be recreated on boot for whatever reason).
             * Add a new pool, named "QemuPool", type "dir", with target path "/mnt/vms/qemu/vdisks". After creation have it autostart on boot. Apply.
+            * Add a new pool, named "ISOs", type "dir", with target path "/mnt/vms/ISOs". After creation have it autostart on boot. Apply.
         * Configure virtual networks:
             * Delete default network
             * Configure NAT network, named "NAT", with DHCP serving 192.168.122.0/24
