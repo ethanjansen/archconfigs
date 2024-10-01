@@ -53,7 +53,7 @@
         [Service]
         User=%I
         Environment=XDG_RUNTIME_DIR=/run/user/1000
-        Type=forking
+        Type=simple
         ExecStart=/home/ethan/.config/hypr/hyprlockOnHibernate.sh
         ExecStartPost=/usr/bin/sleep 1
 

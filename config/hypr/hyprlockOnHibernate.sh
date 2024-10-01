@@ -2,5 +2,5 @@
 
 if ! /usr/bin/pidof hyprlock; then
     echo "Locking..."
-    /usr/bin/hyprlock --display wayland-1 -q --immediate
+    /usr/bin/hyprlock --display wayland-1 -q
 fi
