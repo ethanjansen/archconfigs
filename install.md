@@ -299,6 +299,26 @@
     * Create /mnt/vms/qemu, /mnt/vms/qemu/vdisks
         * Disable cow for vdisks: `chattr +C /mnt/vms/qemu/vdisks`
         * Convert old Vmware vmdk disks to qcow2: `qemu-img convert -cpf vmdk -O qcow2 {input.vmdk} {output.qcow2}`
+    * Set `firewall_backend="iptables"` in /etc/libvirt/network.conf
+    * Add user to libvirt and wheel groups:
+        * `usermod -a -G libvirt ethan; usermod -a -G wheel ethan`
+    * Enable libvirtd.service; also start libvirtd.service and virtlogd.service
+    * Reboot.
+    * Change group ownership of /mnt/vms/qemu: `chown -R ethan:libvirt-qemu /mnt/vms/qemu`
+        * Also recursively set all directory permssions in /mnt/vms/qemu to 775, and all (non-executable) file permissions to 664
+    * In virt-manager:
+        * Configure /mnt/vms/qemu/vdisks storage pool:
+            * Under Storage, stop and delete the default pool.
+            * Add a new pool, named "QemuPool", type "dir", with target path "/mnt/vms/qemu/vdisks". After creation have it autostart on boot. Apply.
+        * Configure virtual networks:
+            * Configure routed network, named "Routed", on 192.168.123.1/24
+            * Configure NAT network, named "NAT", on 192.168.122.1/24
+        * Tips:
+            * To enable UEFI w/o secure boot domains, use the `UEFI x86_64: /usr/share/edk2/x64/OVMF_CODE.4m.fd` firmware.
+            * To enable virtual 3D acceleration:
+                * Add Video hardware with "Model" as "Virtio". Then remove any other "Video" virtual hardware (within the sidebar).
+                * Go to "Display Spice" and set "Listen Type" to "None". Also tick the "OpenGL" checkbox and select the appropriate renderer.
+                * Click on "Video Virtio" and tick "3D Acceleration".
 
 ## Additional Software
 * (VS)Code: `code`, `code-marketplace`, `code-features`
