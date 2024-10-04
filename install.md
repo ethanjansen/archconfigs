@@ -184,7 +184,21 @@
     * Enable/Start snapper-timeline.timer and snapper-cleanup.timer
     * Check snapshot creation/retention with `sudo snapper -c {config} list` after some time
 * Audio
-    * Install `pipewire`, `wireplumber`, `pipewire-jack`
+    * Install `pipewire`, `wireplumber`, `pipewire-jack`, `pipewire-alsa`, `pipewire-pulse`, `noise-suppression-for-voice`
+    * Ensure services are started: `systemctl --user --now enable pipewire pipewire-pulse wireplumber`
+    * Add Pipewire configuration for noise suppression: [~/.config/pipewire/pipewire.conf.d/99-input-denoising.conf](./config/pipewire/pipewire.conf.d/99-input-denoising.conf)
+    * Add wireplumber device configurations: [~/.config/wireplumber/wireplumber.conf.d/*](./config/wireplumber/wireplumber.conf.d)
+    * Restart pipewire: `systemctl --user restart pipewire`
+    * Set wireplumber settings:
+        ```
+        wpctl settings device.routes.default-sink-volume 1.0
+        wpctl settings --save device.routes.default-sink-volume 1.0
+
+        # could just check the ID values before hand with `wpctl status`
+        wpctl set-default $(wpctl status | grep "\. rnnoise_source" | grep -Eo '[0-9]*')
+
+        wpctl set-volume $(wpctl status | grep "\. Digital Stereo" | grep -Eo '[0-9]*') 1.0
+        ```
 * GPU Driver Configuration
     * Install Drivers: `mesa`, `vulkan-radeon`, and `libva-mesa-driver`
     * Install monitoring: `nvtop`
