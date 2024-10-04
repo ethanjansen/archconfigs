@@ -257,7 +257,7 @@
         * File Manager: `nnn`
         * Editors: `vim`, `neovim`, `nano`
         * Authentication Agent: `polkit-kde-agent`
-        * Clipboard Manager: `wl-clipboard`, `clipse`
+        * Clipboard Manager: `wl-clipboard`, `clipse`, `wl-clipboard-x11`
         * Screenshot: `hyprpicker`, `hyprshot`
     * Desktop configuration:
         * `hyprland` see: [hyprland.conf](./config/hypr/hyprland.conf), [hyprfont.conf](./config/fonts/hyprfont.conf), and [hyprcolor.conf](./config/colors/hyprcolor.conf)
