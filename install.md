@@ -266,6 +266,16 @@
         * `rofi`:
             * Generate default `rofi` config by running `rofi -dump-config > ~/.config/rofi/config.rasi`
             * Apply theme by appending: `@theme "/usr/share/rofi/themes/Arc-Dark.rasi"`
+        * `nvim` theming:
+            * Install `vscode-json-languageserver`, `npm`, `unzip`, `nvchad-git`
+            * Create the ~/.config/nvim/lua/configs path and copy the files:
+                ```
+                cp /usr/share/nvchad/lua/chadrc.lua ~/.config/nvim/lua/
+                cp /usr/share/nvchad/lua/configs/lspconfig.lua ~/.config/nvim/lua/configs
+                ```
+                * Modify the configs according to [.config/nvim/lua](./config/nvim/lua)
+            * Inside `nvim` execute `:MasonInstallAll` to update/install all LSP servers automatically
+            * Close/Restart `nvim`
     * Force apps to use wayland:
         * For electron apps use ~/.config/electron-flags.conf
             ```
