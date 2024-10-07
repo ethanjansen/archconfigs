@@ -376,6 +376,7 @@
                 ```
                 spicetify config current_theme Lucid color_scheme dark
                 spicetify config inject_css 1 replace_colors 1 overwrite_assets 1 inject_theme_js 1
+                spicetify config extensions "bookmark.js|fullAppDisplay.js|keyboardShortcut.js"
                 spicetify backup apply
                 ```
             * Lucid settings (in spotify):
@@ -386,3 +387,10 @@
                 * set player mode: default
                 * playbar set backdrop blur: 15
                 * playlist view mode: compact
+            * Full App Display settings (in spotify, full app display, right click):
+                * Enable progress bar
+                * Enable controls
+                * Trim title
+                * Show album
+                * Show icons
+                * Enable song change animation
