@@ -274,8 +274,14 @@
                 cp /usr/share/nvchad/lua/configs/lspconfig.lua ~/.config/nvim/lua/configs
                 ```
                 * Modify the configs according to [.config/nvim/lua](./config/nvim/lua)
+                * For theming while using sudo also copy the configs to /root/:
+                    ```
+                    sudo cp -r ~/.config/nvim/lua /root/.config/nvim/
+                    sudo chown -R root:root /root/.config/nvim/lua
+                    ```
             * Inside `nvim` execute `:MasonInstallAll` to update/install all LSP servers automatically
             * Close/Restart `nvim`
+            * Note: After updating `nvim`, archlinux.lua will be overridden so reinstall `nvchad-git` (all other settings will be preserved)
     * Force apps to use wayland:
         * For electron apps use ~/.config/electron-flags.conf
             ```
