@@ -346,3 +346,43 @@
 * Office: `libreoffice-fresh`, `libreoffice-extension-texmaths`, `libreoffice-extension-writer2latex`, `hunspell`, `hunspell-en_us`, `hyphen`, `hyphen-en`, `texlive-latexextra`, `texlive-fontsrecommended`, `texlive-bibtexextra`, `texlive-luatex`, `biber`, `aspell`, `aspell-en`
 * Shell Check: `shellcheck`
 * Discord: `webcord`
+* Spotify:
+    * Import spotify GPG key: `curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg  | gpg --import -`
+    * Install from AUR: `spotify`, `spicetify-cli`
+    
+    * Force Wayland support: in ~/.config/spotify-flags.conf append:
+        ```
+        --enable-features=UseOzonePlatform
+        --ozone-platform=wayland
+        ```
+        * Wayland actually breaks settings dropdowns in spotify. Disable to apply settings, and reapply later.
+    * Start spotify to create ~/.config/spotify
+    * Limit storage size: append `storage.size=5120` to ~/.config/spotify/prefs
+    * Theme with spicetify:
+        * Allow spicetify access to spotify install:
+            ```
+            sudo chmod a+wr /opt/spotify
+            sudo chmod a+wr /opt/spotify/Apps -R
+            ```
+        * Install Spicetify-Lucid theme:
+            * Create ~/.config/spicetify/Themes/Lucid
+            * Copy theme from github:
+                ```
+                curl --silent -L -o ~/.config/spicetify/Themes/Lucid/color.ini "https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/main/src/color.ini"
+                curl --silent -L -o ~/.config/spicetify/Themes/Lucid/user.css "https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/main/src/user.css"
+                curl --silent -L -o ~/.config/spicetify/Themes/Lucid/theme.js "https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/main/src/theme.js"
+                ```
+            * Apply spicetify: 
+                ```
+                spicetify config current_theme Lucid color_scheme dark
+                spicetify config inject_css 1 replace_colors 1 overwrite_assets 1 inject_theme_js 1
+                spicetify backup apply
+                ```
+            * Lucid settings (in spotify):
+                * blur: 15
+                * dynamic colors
+                * set grains: default
+                * playlist set background iamge: now-playing
+                * set player mode: default
+                * playbar set backdrop blur: 15
+                * playlist view mode: compact
