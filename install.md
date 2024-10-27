@@ -438,3 +438,10 @@
         * [Check anti-cheat support](https://areweanticheatyet.com/)
         * [Check Proton support](https://www.protondb.com/)
         * [Custom Game Launch Configs](./gameConfigs/steamLaunchParams.md)
+    * Minecraft:
+        * Install: `prismlauncher`
+        * Create folders: /mnt/games/prismLauncher/instances/ /mnt/games/prismLauncher/mods/ /mnt/games/prismLauncher/icons/ /mnt/games/prismLauncher/java/ /mnt/games/prismLauncher/skins/
+        * Settings:
+            * Set folders to match those above (leave downloads as default)
+            * In Minecraft -> Tweaks, use discrete GPU
+            * In Java, set min allocation to 1024 and max to 10240. Set JVM arguments: `-XX:+UseG1GC -Dsun.rmi.dgc.server.gcInterval=2147483646 -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M`
