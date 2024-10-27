@@ -8,7 +8,7 @@
         * Can view these attributes later with `lsattr`.
     * mount partitons in "~" after install.
 * Install Base Packages
-    * `pacstrap -K /mnt base linux linux-lts linux-firmware amd-ucode btrfs-progs exfatprogs sudo nano vim man-db man-pages texinfo screen htop git rsync openssh which fastfetch`
+    * `pacstrap -K /mnt base linux linux-lts linux-firmware amd-ucode btrfs-progs exfatprogs sudo nano vim man-db man-pages texinfo screen htop git rsync openssh which fastfetch lsusb`
 * Initial Config
     * `genfstab -U /mnt >> /mnt/etc/fstab`
     * `arch-chroot /mnt`
@@ -282,6 +282,16 @@
             * Inside `nvim` execute `:MasonInstallAll` to update/install all LSP servers automatically
             * Close/Restart `nvim`
             * Note: After updating `nvim`, archlinux.lua will be overridden so reinstall `nvchad-git` (all other settings will be preserved)
+    * GTK/QT theming:
+        * For GTK settings:
+            * Set font to "JetBrainsMono Nerd Font Regular" size 9
+            * Set color scheme to "Prefer dark"
+            * Set Icon and Mouse cursor themes to "Adwaita"
+                * Note: Segmentation Fault occurs on electron apps if this is not set.
+        * For QT5/QT6 settings:
+            * Ensure `QT_QPA_PLATFORMTHEME` environment variable is set via hyprland.conf
+            * Set "Fusion" style with custom "darker" color scheme.
+            * Change font to "JetBrainsMono Nerd Font Regular 9"
     * Force apps to use wayland:
         * For electron apps use ~/.config/electron-flags.conf
             ```
@@ -394,3 +404,18 @@
                 * Show album
                 * Show icons
                 * Enable song change animation
+* Razer Peripherals: `openrazer-daemon`, `razergenie`
+    * Installation:
+        * Add user to plugdev group: `sudo gpasswd -a $USER plugdev`; sign out after this.
+        * openrazer-daemon uses a dkms driver; linux headers are required to build this. Install `linux-headers` and `linux-lst-headers`.
+            * This should automatically build the dkms driver. Reboot.
+    * Keyboard: Nothing
+    * Mouse: 
+        * Lighting: static green
+        * DPI: Set all DPI to 800 (need to close window and toggle DPI between changes) except for one setting at 400
+        * Polling rate: 1000 Hz
+* RGB: `openrgb`
+    * Installation: Enable the `i2c_dev` module by adding `i2c_dev` to /etc/modules-load.x/i2c-dev.conf and reboot.
+    * Set Asus Addressable RGB 1 to size 0 and Asus Addressable RGB 2 to size 30.
+    * Create a static green profile applied to all devices.
+    * Apply on boot by adding `exec-once = openrgb -p Green.org` to hyprland config
