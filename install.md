@@ -431,10 +431,12 @@
             * Install Windows fonts (yuck): `ttf-ms-win11-auto`
             * Install 32-bit dependencies: `lib32-systemd`
             * Increase `vm.max_map_count`: Create /etc/sysctl.d/80-vmmaxmap.conf with contents `vm.max_map_count = 2147483642`. Reboot.
-            * Install steam: `steam`
+            * Install steam: `steam`, `steam-screensaver-fix`
         * Settings:
             * In Steam Settings -> Storage, add /mnt/games as drive and make default.
             * In Steam Settings -> Compatibility, enable steam play for all other titles
+        * Run:
+            * Using Rofi, run "Steam (Screensaver fix) (Runtime)" to prevent Steam from inhibiting lockscreen (even after being closed) -- known bug
         * [Check anti-cheat support](https://areweanticheatyet.com/)
         * [Check Proton support](https://www.protondb.com/)
         * [PCGamingWiki](https://www.pcgamingwiki.com/wiki/Home) - for custom save locations
