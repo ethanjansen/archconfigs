@@ -201,6 +201,7 @@
         ```
 * GPU Driver Configuration
     * Install Drivers: `mesa`, `vulkan-radeon`, and `libva-mesa-driver`
+    * 32-bit drivers (needed for steam, requires multilib repo): `lib32-mesa`, `lib32-vulkan-radeon` 
     * Install monitoring: `nvtop`
     * Install other utils: `libva-utils`
     * Disable passthrough GPU on host with VFIO driver:
@@ -266,6 +267,9 @@
         * `rofi`:
             * Generate default `rofi` config by running `rofi -dump-config > ~/.config/rofi/config.rasi`
             * Apply theme by appending: `@theme "/usr/share/rofi/themes/Arc-Dark.rasi"`
+            * Set font: uncomment font line under "configuration", chaging it to: `font: "JetBrainsMono Nerd Font 9";`
+        * `kitty` theming:
+            * Set font to "JetBrains Mono Nerd Font". Leave the rest auto (uncommented). Set size to 9.0.
         * `nvim` theming:
             * Install `vscode-json-languageserver`, `npm`, `unzip`, `nvchad-git`
             * Create the ~/.config/nvim/lua/configs path and copy the files:
@@ -419,3 +423,18 @@
     * Set Asus Addressable RGB 1 to size 0 and Asus Addressable RGB 2 to size 30.
     * Create a static green profile applied to all devices.
     * Apply on boot by adding `exec-once = openrgb -p Green.org` to hyprland config
+* Gaming:
+    * Steam:
+        * Install: 
+            * Enable multilib support (dumb 32bit): uncomment the `[multilib]` section in /etc/pacman.conf. Update system.
+            * Add user to disk group: `sudo gpasswd -a $USER disk`; sign out after this.
+            * Install Windows fonts (yuck): `ttf-ms-win11-auto`
+            * Install 32-bit dependencies: `lib32-systemd`
+            * Increase `vm.max_map_count`: Create /etc/sysctl.d/80-vmmaxmap.conf with contents `vm.max_map_count = 2147483642`. Reboot.
+            * Install steam: `steam`
+        * Settings:
+            * In Steam Settings -> Storage, add /mnt/games as drive and make default.
+            * In Steam Settings -> Compatibility, enable steam play for all other titles
+        * [Check anti-cheat support](https://areweanticheatyet.com/)
+        * [Check Proton support](https://www.protondb.com/)
+        * [Custom Game Launch Configs](./gameConfigs/steamLaunchParams.md)
