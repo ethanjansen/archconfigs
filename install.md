@@ -437,6 +437,7 @@
             * In Steam Settings -> Compatibility, enable steam play for all other titles
         * [Check anti-cheat support](https://areweanticheatyet.com/)
         * [Check Proton support](https://www.protondb.com/)
+        * [PCGamingWiki](https://www.pcgamingwiki.com/wiki/Home) - for custom save locations
         * [Custom Game Launch Configs](./gameConfigs/steamLaunchParams.md)
     * Minecraft:
         * Install: `prismlauncher`
