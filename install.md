@@ -423,6 +423,7 @@
     * Set Asus Addressable RGB 1 to size 0 and Asus Addressable RGB 2 to size 30.
     * Create a static green profile applied to all devices.
     * Apply on boot by adding `exec-once = openrgb -p Green.org` to hyprland config
+    * Apply after hibernation by adding [userRGBAfterHibernate systemd service](./systemd/system/userRGBAfterHibernate@.service) and enabling for user.
 * Gaming:
     * Steam:
         * Install: 

@@ -1,0 +1,11 @@
+[Unit]
+Description=After resuming from hibneration set computer RGB from user profile
+After=hibernate.target
+
+[Service]
+User=%I
+Type=simple
+ExecStart=/usr/bin/openrgb -p Green.orp
+
+[Install]
+WantedBy=hibernate.target
