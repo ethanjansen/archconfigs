@@ -443,6 +443,9 @@
         * [Check Proton support](https://www.protondb.com/)
         * [PCGamingWiki](https://www.pcgamingwiki.com/wiki/Home) - for custom save locations
         * [Custom Game Launch Configs](./gameConfigs/steamLaunchParams.md)
+        * [Non-standard Game Data Relocation](./gameConfigs/dataLocationMoves.md)
+        * [Save Backups](./gameConfigs/saveBackups.md) (non-cloud saves)
+        * [Special Linux Game Settings](./gameConfigs/specialLinuxSettings.md)
     * Minecraft:
         * Install: `prismlauncher`
         * Create folders: /mnt/games/prismLauncher/instances/ /mnt/games/prismLauncher/mods/ /mnt/games/prismLauncher/icons/ /mnt/games/prismLauncher/java/ /mnt/games/prismLauncher/skins/
