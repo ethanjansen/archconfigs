@@ -359,6 +359,7 @@
         * Parallel downloading: Enabled
 * Office: `libreoffice-fresh`, `libreoffice-extension-texmaths`, `libreoffice-extension-writer2latex`, `hunspell`, `hunspell-en_us`, `hyphen`, `hyphen-en`, `texlive-latexextra`, `texlive-fontsrecommended`, `texlive-bibtexextra`, `texlive-luatex`, `biber`, `aspell`, `aspell-en`
 * Shell Check: `shellcheck`
+* 7zip: `p7zip`
 * Discord: `webcord`
 * Spotify:
     * Import spotify GPG key: `curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg  | gpg --import -`
