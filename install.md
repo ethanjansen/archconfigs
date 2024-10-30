@@ -455,3 +455,5 @@
             * Set folders to match those above (leave downloads as default)
             * In Minecraft -> Tweaks, use discrete GPU
             * In Java, set min allocation to 1024 and max to 10240. Set JVM arguments: `-XX:+UseG1GC -Dsun.rmi.dgc.server.gcInterval=2147483646 -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M`. Set java path to "/usr/lib/jvm/java-8-openjdk/bin/java" (use "Auto-detect...").
+        * For each modpack instance create and symlink to /mnt/gameBackups/backups/minecraft/{instance}/ from /mnt/games/prismLauncher/instances/{instance}/minecraft/backups then ensure the ftbbackups location is set to nothing (`S:folder=`) in {instance folder}/minecraft/config/ftbutilities.cfg and {instance folder}/minecraft/config/ftbbackups.cfg
+            * When creating a final backup of an instance, delete the /mnt/games/prismLauncher/instances/{instance}/minecraft/backup symlink, delete the automatic backups, and store an entire xz backup of /mnt/games/prismLauncher/instances/{instance} 
