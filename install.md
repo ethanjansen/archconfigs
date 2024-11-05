@@ -439,6 +439,7 @@
         * Settings:
             * In Steam Settings -> Storage, add /mnt/games as drive and make default.
             * In Steam Settings -> Compatibility, enable steam play for all other titles
+            * In Steam settings -> Downloads, disable shader pre-caching
         * Run:
             * Using Rofi, run "Steam (Screensaver fix) (Runtime)" to prevent Steam from inhibiting lockscreen (even after being closed) -- known bug
         * [Check anti-cheat support](https://areweanticheatyet.com/)
