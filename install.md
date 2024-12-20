@@ -352,6 +352,7 @@
 * Browser: `chromium`
     * Add [~/.config/chromium-flags.conf](config/chromium-flags.conf)
     * Set custom fonts in settings
+    * Enable "Use System title bar and borders" to fix flashing and launch issues
     * Enable experimental features in chrome://flags
         * Fluent Scrollbars: Enabled
         * Tab Scrolling: Enabled - tabs shrink to large size
@@ -419,13 +420,23 @@
         * Lighting: static green
         * DPI: Set all DPI to 800 (need to close window and toggle DPI between changes) except for one setting at 400
         * Polling rate: 1000 Hz
+* Logitech Peripherals: `solaar`
+    * Installation:
+        * Ensure user is added to plugdev group
+        * Reload udev rules: `sudo udevadm contorl --reload-rules`
+        * Add startup to hyprland config: `exec-once = solaar -w hide --restart-on-wake-up`
+    * Mouse:
+        * Unlock and set the following settings:
+            * Onboard profiles: Disabled
+            * Report rate: 1ms *(Note: higher refresh rate does not work in some games)*
+            * Sensitivity: X/Y/LOD: 800
 * RGB: `openrgb`
     * Installation: Enable the `i2c_dev` module by adding `i2c_dev` to /etc/modules-load.x/i2c-dev.conf and reboot.
     * Set Asus Addressable RGB 1 to size 0 and Asus Addressable RGB 2 to size 30.
     * Create a static green profile applied to all devices.
     * Apply on boot by adding `exec-once = openrgb -p Green.org` to hyprland config
     * Apply after hibernation by adding [userRGBAfterHibernate systemd service](./systemd/system/userRGBAfterHibernate@.service) and enabling for user.
-* Java: `jdk-openjdk` (latest) and `jdk8-openjdk` (for minecraft)
+* Java: `jdk-openjdk` (latest), `jdk17-openjdk`, and `jdk8-openjdk` (for minecraft)
     * Ensure the latest java is set as the default environment using `archlinux-java status` and `archlinux-java set {java environment name}`
 * Gaming:
     * Steam:
@@ -456,5 +467,19 @@
             * Set folders to match those above (leave downloads as default)
             * In Minecraft -> Tweaks, use discrete GPU
             * In Java, set min allocation to 1024 and max to 10240. Set JVM arguments: `-XX:+UseG1GC -Dsun.rmi.dgc.server.gcInterval=2147483646 -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M`. Set java path to "/usr/lib/jvm/java-8-openjdk/bin/java" (use "Auto-detect...").
+                * For newer minecraft versions: set java path accordingly per instance
+            * For instances crasing due to libopenal: set environment variable: `ALSOPT_DRIVERS=pulse`
         * For each modpack instance create and symlink to /mnt/gameBackups/backups/minecraft/{instance}/ from /mnt/games/prismLauncher/instances/{instance}/minecraft/backups then ensure the ftbbackups location is set to nothing (`S:folder=`) in {instance folder}/minecraft/config/ftbutilities.cfg and {instance folder}/minecraft/config/ftbbackups.cfg
             * When creating a final backup of an instance, delete the /mnt/games/prismLauncher/instances/{instance}/minecraft/backups symlink, delete the automatic backups, and store an entire xz backup of /mnt/games/prismLauncher/instances/{instance} 
+* Media Content:
+    * Player: `mpv`
+    * MKV Tools: `makemkv`, `mkvtoolnix-gui` `qt6-multimedia-ffmpeg`
+        * MakeMKV settings:
+            * Custom file destination: /mnt/scratch/Movies/MakeMKV
+            * Minimum file length: 40 seconds
+            * Expert mode, show AV synchronization messages, and enable internet access
+            * Interface/Preferred language: eng
+            * Custom java executable location: /usr/lib/jvm/java-23-openjdk/bin/java
+    * Transcoding: `handbrake`, `ffmpeg`
+    * Subtitles: `subtitleedit`, `tesseract`, `tesseract-data-eng`
+    * Audio: `audacity`
