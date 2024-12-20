@@ -7,6 +7,11 @@
 * Launch programs:
     * Kitty: `q`
 
+## Package Management
+* List local packages: `pikaur -Qn`
+* List foreign (AUR) packages: `pikaur -Qqm`
+* Remove packages and its unused dependencies: `pikaur -Rs`
+
 ## Neovim
 * Navigation: `hjkl`
 * Exiting:
