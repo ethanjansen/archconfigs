@@ -480,6 +480,26 @@
             * Expert mode, show AV synchronization messages, and enable internet access
             * Interface/Preferred language: eng
             * Custom java executable location: /usr/lib/jvm/java-23-openjdk/bin/java
+        * MKVToolNix GUI settings:
+            * GUI: Uncheck "Check online for available updates"
+            * Multiplexer:
+                * Process priority: Normal
+                * Adding files: always add files to the current multiplex settings
+                * Adding directories: handle all files from all directories as a single list of files
+                * Predefined values:
+                    * Audio: Surround 7.1, Surround 5.1, Stereo, Commentary
+                    * Subtitles: English, Forced, Commentary
+                * Default values:
+                    * Set default track languages to eng
+                * Destination file:
+                    * Check "Only use the first source file that contains a video track"
+                    * Fixed destination directory: /mnt/scratch/Movies/MKVTools
+                * Playlists and Blu-rays:
+                    * Minimum playlist duration: 40 seconds
+            * Jobs and job queue:
+                * Always use a default description when adding a job to the queue
+                * Remove the output file when a job ends with errors or when it is aborted
+                * Remove job from queue after completion: Only if the job ocmpleted successfully
     * Transcoding: `handbrake`, `ffmpeg`
     * Subtitles: `subtitleedit`, `tesseract`, `tesseract-data-eng`
     * Audio: `audacity`
