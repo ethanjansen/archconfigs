@@ -491,6 +491,8 @@
                     * Subtitles: English, Forced, Commentary
                 * Default values:
                     * Set default track languages to eng
+                    * Disable "default track" flag for subtitle tracks
+                    * Added underscores to the "derive... from file names" regular expressions
                 * Destination file:
                     * Check "Only use the first source file that contains a video track"
                     * Fixed destination directory: /mnt/scratch/Movies/MKVTools
@@ -502,4 +504,20 @@
                 * Remove job from queue after completion: Only if the job ocmpleted successfully
     * Transcoding: `handbrake`, `ffmpeg`
     * Subtitles: `subtitleedit`, `tesseract`, `tesseract-data-eng`
+        * SubtitleEdit settings:
+            * General: Uncheck "Check for updates"
+            * Toolbar: New, Open, Save, Find, Replace, Fix common errors, Spell check, settings
+            * Appearance:
+                * Subtitle font: JetBrainsMono Nerd Font
+                * Use dark theme with list view grid lines
+                * List view: subtitle font size: 12
+                * Text box: subtitle font size: 12 bold
+            * Layout (not under settings): 12
+            * Batch convert settings:
+                * Save in output folder: /mnt/scratch/Movies/Subtitle Edit
+                * Format: srt
+                * Encoding: UTF-8 with BOM
+            * Spell check (set by running spell check): Set dictionary language to "English - English/British" and download
+            * Fix common errors default: Remove empty lines/unused line breaks, Fix overlapping display times, Fix invalid italic tags, Remove unneeded spaces, Remove unneeded periods, Fix commas, Fix double apostrophe characters to a single quote, Add missing quotes, Remove '> >', Fix missing \[ or \( in line, Fix ocmmon OCR errors, Fix uppercase 'i' inside lowercase words, remove space between numbers, Fix alone lowercase 'i' to 'I'
+        * *Note: SubtitleEdit batch convert does not work when input files do not have an extension.*
     * Audio: `audacity`
