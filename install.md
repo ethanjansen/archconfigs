@@ -503,6 +503,10 @@
                 * Remove the output file when a job ends with errors or when it is aborted
                 * Remove job from queue after completion: Only if the job ocmpleted successfully
     * Transcoding: `handbrake`, `ffmpeg`
+        * Handbrake settings:
+            * Set destination "To" to: /mnt/scratch/Movies/Handbrake 
+            * Import presets from "~/Documents/Handbrake Presets"
+                * Set 1080p preset as default
     * Subtitles: `subtitleedit`, `tesseract`, `tesseract-data-eng`
         * SubtitleEdit settings:
             * General: Uncheck "Check for updates"
