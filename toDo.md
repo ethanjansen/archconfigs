@@ -6,14 +6,6 @@
 * Media Content:
     * Set Defaults
     * Handbrake profiles
-    * Scripts:
-        * ffmpeg:
-            * hash check streams/files
-            * read metadata
-        * makemkv:
-            * add subtitles (english and foreign)
-            * split at time/chapter
-            * append file
     * Outline workflow
     * Test
 * VM Setup:
@@ -36,4 +28,5 @@
 * Hyprland keybinds
 * GPU overclocking
     * Benchmark software (including GPU/CPU/RAM)
+* Remote desktop
 * Backups
