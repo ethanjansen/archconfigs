@@ -360,7 +360,10 @@
 * 7zip: `p7zip`
 * Discord: `webcord`
 * Spotify:
-    * Import spotify GPG key: `curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg  | gpg --import -`
+    * Import spotify GPG key:
+        * Check [aur package](https://aur.archlinux.org/packages/spotify) for latest GPG to import
+        * Remove old GPG keys with `gpg --delete-key {KEY}`
+            * Get the key to delete with `gpg -k`
     * Install from AUR: `spotify`, `spicetify-cli`
     
     * Force Wayland support: in ~/.config/spotify-flags.conf append:
