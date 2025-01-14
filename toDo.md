@@ -2,12 +2,6 @@
 ### Ethan Jansen
 ### 12/20/2024
 
-* Printers
-* Media Content:
-    * Set Defaults
-    * Handbrake profiles
-    * Outline workflow
-    * Test
 * VM Setup:
     * Windows 11 VMs:
         * Work/Game: **GPU Passthrough**

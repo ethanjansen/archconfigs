@@ -307,7 +307,7 @@
     * Set `firewall_backend="iptables"` in /etc/libvirt/network.conf
     * Add user to libvirt and wheel groups:
         * `usermod -a -G libvirt ethan; usermod -a -G wheel ethan`
-    * Enable libvirtd.service; also start libvirtd.service and virtlogd.service
+    * Enable `libvirtd.service`; also start `libvirtd.service` and `virtlogd.service`
     * Reboot.
     * Change group ownership of /mnt/vms/qemu: `chown -R ethan:libvirt-qemu /mnt/vms/qemu`
         * Also recursively set all directory permssions in /mnt/vms/qemu to 775, and all (non-executable) file permissions to 664
@@ -342,6 +342,36 @@
                 * Go to "Display Spice" and set "Listen Type" to "None". Also tick the "OpenGL" checkbox and select the appropriate renderer.
                 * Click on "Video Virtio" and tick "3D Acceleration".
             * Install virtio guest tools for windows: https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/
+
+* Printers:
+    * Install: `cups-pdf`, `hplip`, and `foomatic-db-ppds`
+    * Enable/Start `cups.service`
+    * Access config at [https://localhost:631/admin](https://localhost:631/admin)
+        * Add printers:
+            * CUPS-PDF:
+                * Name: PDF-Printer
+                * Description: CUPS PDF Printer
+                * Driver: Generic CUPS-PDF (w/ options)
+                * Default options:
+                    * Log Level: error and status messages
+                    * output resolution: 2400dpi
+            * Lexmark E360d:
+                * Name: Ethan-Printer
+                * Description: Lexmark E360d
+                * Driver: Lexmark E360d
+                * Default options:
+                    * Finishing->Duplex: Duplex - Long Edge
+                    * Resolution: 600dpi
+            * HP OfficeJet Pro 8710:
+                * Name: Office-Printer
+                * Description: HP OfficeJet Pro 8710
+                * Driver: HP Officejet Pro 8710,hpcups,3.24.4 (en,en)
+                * Default options:
+                    * Double-sided printing: Long Edge
+        * Set Ethan-Printer as the server default printer *(can be found under manage printers->administration dropdown)*
+    * Set PDF-Printer output location:
+        * Uncomment the line starting with "#Out" and modify it to `Out ${HOME}/Downloads` in /etc/cups/cups-pdf.conf
+    * Restart `cups.service`
 
 ## Additional Software
 * (VS)Code: `code`, `code-marketplace`, `code-features`
