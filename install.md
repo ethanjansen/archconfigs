@@ -271,21 +271,18 @@
         * `kitty` theming:
             * Set font to "JetBrains Mono Nerd Font". Leave the rest auto (uncommented). Set size to 9.0.
         * `nvim` theming:
-            * Install `vscode-json-languageserver`, `npm`, `unzip`, `nvchad-git`
-            * Create the ~/.config/nvim/lua/configs path and copy the files:
-                ```
-                cp /usr/share/nvchad/lua/chadrc.lua ~/.config/nvim/lua/
-                cp /usr/share/nvchad/lua/configs/lspconfig.lua ~/.config/nvim/lua/configs
-                ```
+            * Install `vscode-json-languageserver`, `npm`, `unzip`
+            * Clone NvChad: `git clone https://github.com/NvChad/starter ~/.config/nvim` 
+                * Delete the .git folder
                 * Modify the configs according to [.config/nvim/lua](./config/nvim/lua)
                 * For theming while using sudo also copy the configs to /root/:
                     ```
-                    sudo cp -r ~/.config/nvim/lua /root/.config/nvim/
-                    sudo chown -R root:root /root/.config/nvim/lua
+                    sudo cp -r ~/.config/nvim /root/.config/
+                    sudo chown -R root:root /root/.config/nvim
+                    sudo chmod -R 700 /root/.config/nvim
                     ```
-            * Inside `nvim` execute `:MasonInstallAll` to update/install all LSP servers automatically
-            * Close/Restart `nvim`
-            * Note: After updating `nvim`, archlinux.lua will be overridden so reinstall `nvchad-git` (all other settings will be preserved)
+            * On first run of `nvim` let plugins install and update (Use the "U" menu to update). Close/Restart `nvim`.
+            * Inside `nvim` execute `:MasonInstallAll` to update/install all LSP servers automatically. Close/Restart `nvim`.
     * GTK/QT theming:
         * For GTK settings:
             * Set font to "JetBrainsMono Nerd Font Regular" size 9
@@ -514,11 +511,11 @@
             * Appearance:
                 * Subtitle font: JetBrainsMono Nerd Font
                 * Use dark theme with list view grid lines
-                * List view: subtitle font size: 12
-                * Text box: subtitle font size: 12 bold
+                * List view: subtitle font size: 11
+                * Text box: subtitle font size: 11 bold
             * Layout (not under settings): 12
             * Batch convert settings:
-                * Save in output folder: /mnt/scratch/Movies/Subtitle Edit
+                * Save in output folder: /mnt/scratch/Movies/SubtitleEdit
                 * Format: srt
                 * Encoding: UTF-8 with BOM
             * Spell check (set by running spell check): Set dictionary language to "English - English/British" and download
