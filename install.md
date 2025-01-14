@@ -372,6 +372,10 @@
     * Set PDF-Printer output location:
         * Uncomment the line starting with "#Out" and modify it to `Out ${HOME}/Downloads` in /etc/cups/cups-pdf.conf
     * Restart `cups.service`
+    * Tips:
+        * Can print file from command line using: `lp [-d {printer}] {filename}`
+            * Can also pipe into `lp`
+            * If printer is not specified, default is used
 
 ## Additional Software
 * (VS)Code: `code`, `code-marketplace`, `code-features`
