@@ -312,12 +312,10 @@
     * Change group ownership of /mnt/vms/qemu: `chown -R ethan:libvirt-qemu /mnt/vms/qemu`
         * Also recursively set all directory permssions in /mnt/vms/qemu to 775, and all (non-executable) file permissions to 664
         * Do the same with /mnt/vms/ISOs
-    * Move libvirt VM config location (leave default ownserhip/permissions)
+    * Link to libvirt VM config location:
         ```
-        sudo mv /etc/libvirt/qemu /mnt/vms/qemu/configs
-        sudo mv /etc/libvirt/storage /mnt/vms/qemu/storageConfigs
-        sudo ln -s /mnt/vms/qemu/configs /etc/libvirt/qemu
-        sudo ln -s /mnt/vms/qemu/storageConfigs /etc/libvirt/storage
+        ln -s /etc/libvirt/qemu /mnt/vms/qemu/configs
+        ln -s /etc/libvirt/storage /mnt/vms/qemu/storageConfigs
         ```
     * In virt-manager:
         * Configure /mnt/vms/qemu/vdisks storage pool:
