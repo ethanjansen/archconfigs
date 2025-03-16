@@ -530,6 +530,9 @@
     * Test docker install: `sudo docker run -it --rm archlinux bash -c "echo Hello World!"`
         * To clean up test get image id with `sudo docker images` and delete image with `sudo docker rmi <image id>`
     * *Do not add user to `docker` group as it is equivalent to root*
+* 3D Printer Slicer: `orca-slicer-bin`
+    * Setup: Generic Marlin 0.4mm printer, generic filaments, stealth mode
+    * Preferences: check for stable updates only, do not show tip of day
 * Media Content:
     * Player: `mpv`
     * MKV Tools: `makemkv`, `mkvtoolnix-gui`, `qt6-multimedia-ffmpeg`
