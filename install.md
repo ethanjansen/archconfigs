@@ -4,8 +4,15 @@
 
 ## First Setup
 * [Disk Partitioning/Mounting](./drives.md)
+    * Create partitions with `fdisk` and `mkfs`
+    * Create btrfs subvolumes:
+        * Mount btrfs disks/partitions with `mount`.
+        * `cd` to mount point and create subvolumes with `sudo btrfs subvolume create <path>`.
+        * Unmount btrfs disks/partitions with `umount`.
     * Make sparse directory structure before mounting. Apply NOCOW attributes with `chattr +C` before and after mounting partitions.
         * Can view these attributes later with `lsattr`.
+        * Mount partitions with `mount -o subvolid=<id>,subvol=</path/from/default/subvol> <disk/part> <mount point>`.
+            * Can get subvolume id and path using `sudo btrfs subvolume list -t` when the btrfs disk/parition/subvolume is mounted.
     * mount partitons in "~" after install.
 * Install Base Packages
     * `pacstrap -K /mnt base linux linux-lts linux-firmware amd-ucode btrfs-progs exfatprogs sudo nano vim man-db man-pages texinfo screen htop git rsync openssh which fastfetch usbutils`
@@ -78,6 +85,8 @@
     * To allow `power-service` to login during a scheduled shutdown, comment out `auth requisite pam_nologin.so` and `account required pam_nologin.so` from /etc/pam.d/system-login
     * Create ssh keypair for `ethan`. Install IoT server public key for `power-service`.
     * Mount additional "~" drives, fixing user:group ownership to `ethan:ethan` and adding `chattr +C` where applicable
+        * Mount partitions with `mount -o subvolid=<id>,subvol=</path/from/default/subvol> <disk/part> <mount point>`.
+        * Alternatively, add entries to /etc/fstab and use `mount <mount point>`
     * Relax PAM faillock by modifying /etc/security/faillock.conf with the following:
         ```
         unlock_time = 600

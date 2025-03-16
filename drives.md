@@ -39,6 +39,10 @@
     * *Volume 2:* scratch
         * mount point: /mnt/scratch
         * owner: ethan:ethan
+    * *Volume 3:* docker
+        * mount point: /var/lib/docker
+        * owner: root:root
+        * no snapper snapshots
 * **Disk 3 (6TB): (partitionless) btrfs data**
     * *Volume 1:* data
         * mount point: ~/Data
