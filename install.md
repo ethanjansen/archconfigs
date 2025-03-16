@@ -1,6 +1,6 @@
 # Arch Install
 ### Ethan Jansen
-### 09/15/2024
+### 05/16/2024
 
 ## First Setup
 * [Disk Partitioning/Mounting](./drives.md)
@@ -512,9 +512,27 @@
             * For instances crasing due to libopenal: set environment variable: `ALSOPT_DRIVERS=pulse`
         * For each modpack instance create and symlink to /mnt/gameBackups/backups/minecraft/{instance}/ from /mnt/games/prismLauncher/instances/{instance}/minecraft/backups then ensure the ftbbackups location is set to nothing (`S:folder=`) in {instance folder}/minecraft/config/ftbutilities.cfg and {instance folder}/minecraft/config/ftbbackups.cfg
             * When creating a final backup of an instance, delete the /mnt/games/prismLauncher/instances/{instance}/minecraft/backups symlink, delete the automatic backups, and store an entire xz backup of /mnt/games/prismLauncher/instances/{instance} 
+* Docker: `docker`, `docker-compose`
+    * Enable docker socket: `sudo systemctl enable docker.socket`
+    * Ensure the docker btrfs subvolume is mounted (and in fstab) at /var/lib/docker
+    * Reboot
+    * Verify docker install: `sudo docker info`
+    * Use the btrfs docker storage driver:
+        * Ensure `docker.service` is not running
+        * Remove everything from /var/lib/docker
+        * Create /etc/docker/daemon.json and add:
+            ```
+            {
+              "storage-driver": "btrfs"
+            }
+            ```
+        * Start docker and verify with `sudo docker info`
+    * Test docker install: `sudo docker run -it --rm archlinux bash -c "echo Hello World!"`
+        * To clean up test get image id with `sudo docker images` and delete image with `sudo docker rmi <image id>`
+    * *Do not add user to `docker` group as it is equivalent to root*
 * Media Content:
     * Player: `mpv`
-    * MKV Tools: `makemkv`, `mkvtoolnix-gui` `qt6-multimedia-ffmpeg`
+    * MKV Tools: `makemkv`, `mkvtoolnix-gui`, `qt6-multimedia-ffmpeg`
         * MakeMKV settings:
             * Custom file destination: /mnt/scratch/Movies/MakeMKV
             * Minimum file length: 40 seconds
