@@ -11,6 +11,7 @@
 * List local packages: `pikaur -Qn`
 * List foreign (AUR) packages: `pikaur -Qqm`
 * Remove packages and its unused dependencies: `pikaur -Rs`
+* Find packages requiring \<packages\>: `pikaur -Qi <package> | grep Required`
 
 ## Neovim
 * Navigation: `hjkl`
