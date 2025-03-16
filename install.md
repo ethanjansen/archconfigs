@@ -8,7 +8,7 @@
         * Can view these attributes later with `lsattr`.
     * mount partitons in "~" after install.
 * Install Base Packages
-    * `pacstrap -K /mnt base linux linux-lts linux-firmware amd-ucode btrfs-progs exfatprogs sudo nano vim man-db man-pages texinfo screen htop git rsync openssh which fastfetch lsusb`
+    * `pacstrap -K /mnt base linux linux-lts linux-firmware amd-ucode btrfs-progs exfatprogs sudo nano vim man-db man-pages texinfo screen htop git rsync openssh which fastfetch usbutils`
 * Initial Config
     * `genfstab -U /mnt >> /mnt/etc/fstab`
     * `arch-chroot /mnt`
@@ -187,7 +187,7 @@
     * Install `pipewire`, `wireplumber`, `pipewire-jack`, `pipewire-alsa`, `pipewire-pulse`, `noise-suppression-for-voice`
     * Ensure services are started: `systemctl --user --now enable pipewire pipewire-pulse wireplumber`
     * Add Pipewire configuration for noise suppression: [~/.config/pipewire/pipewire.conf.d/99-input-denoising.conf](./config/pipewire/pipewire.conf.d/99-input-denoising.conf)
-    * Add wireplumber device configurations: [~/.config/wireplumber/wireplumber.conf.d/*](./config/wireplumber/wireplumber.conf.d)
+    * Add wireplumber device configurations: [~/.config/wireplumber/wireplumber.conf.d/\*](./config/wireplumber/wireplumber.conf.d)
     * Restart pipewire: `systemctl --user restart pipewire`
     * Set wireplumber settings:
         ```
