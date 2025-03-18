@@ -400,7 +400,7 @@
 * Shell Check: `shellcheck`
 * 7zip: `p7zip`
 * Discord: `webcord`
-    * Screen share crashes on default electron version. `electron32` works.
+    * Screen share crashes on default electron version; `electron32` works: https://github.com/SpacingBat3/WebCord/issues/582
         * To always use `electron32`, edit /usr/bin/webcord: `sudo sed -Ei 's/electron[0-9]{2}/electron32/g' /usr/bin/webcord`
 * Spotify:
     * Import spotify GPG key:
