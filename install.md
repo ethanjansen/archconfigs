@@ -400,6 +400,8 @@
 * Shell Check: `shellcheck`
 * 7zip: `p7zip`
 * Discord: `webcord`
+    * Screen share crashes on default electron version. `electron32` works.
+        * To always use `electron32`, edit /usr/bin/webcord: `sudo sed -Ei 's/electron[0-9]{2}/electron32/g' /usr/bin/webcord`
 * Spotify:
     * Import spotify GPG key:
         * Check [aur package](https://aur.archlinux.org/packages/spotify) for latest GPG to import
@@ -509,7 +511,7 @@
             * In Minecraft -> Tweaks, use discrete GPU
             * In Java, set min allocation to 1024 and max to 10240. Set JVM arguments: `-XX:+UseG1GC -Dsun.rmi.dgc.server.gcInterval=2147483646 -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M`. Set java path to "/usr/lib/jvm/java-8-openjdk/bin/java" (use "Auto-detect...").
                 * For newer minecraft versions: set java path accordingly per instance
-            * For instances crasing due to libopenal: set environment variable: `ALSOPT_DRIVERS=pulse`
+            * For instances crashing due to libopenal: set environment variable: `ALSOPT_DRIVERS=pulse`
         * For each modpack instance create and symlink to /mnt/gameBackups/backups/minecraft/{instance}/ from /mnt/games/prismLauncher/instances/{instance}/minecraft/backups then ensure the ftbbackups location is set to nothing (`S:folder=`) in {instance folder}/minecraft/config/ftbutilities.cfg and {instance folder}/minecraft/config/ftbbackups.cfg
             * When creating a final backup of an instance, delete the /mnt/games/prismLauncher/instances/{instance}/minecraft/backups symlink, delete the automatic backups, and store an entire xz backup of /mnt/games/prismLauncher/instances/{instance} 
 * Docker: `docker`, `docker-compose`
