@@ -15,7 +15,7 @@
             * Can get subvolume id and path using `sudo btrfs subvolume list -t` when the btrfs disk/parition/subvolume is mounted.
     * mount partitons in "~" after install.
 * Install Base Packages
-    * `pacstrap -K /mnt base linux linux-lts linux-firmware amd-ucode btrfs-progs exfatprogs sudo nano vim man-db man-pages texinfo screen htop git rsync openssh which fastfetch usbutils`
+    * `pacstrap -K /mnt base linux linux-lts linux-firmware amd-ucode btrfs-progs exfatprogs sudo nano vim man-db man-pages texinfo screen git rsync openssh which fastfetch usbutils`
 * Initial Config
     * `genfstab -U /mnt >> /mnt/etc/fstab`
     * `arch-chroot /mnt`
@@ -211,7 +211,6 @@
 * GPU Driver Configuration
     * Install Drivers: `mesa`, `vulkan-radeon`, and `libva-mesa-driver`
     * 32-bit drivers (needed for steam, requires multilib repo): `lib32-mesa`, `lib32-vulkan-radeon` 
-    * Install monitoring: `nvtop`
     * Install other utils: `libva-utils`
     * Disable passthrough GPU on host with VFIO driver:
         * Determine IOMMU groups/PCI IDs, and GPU IDs (ensure passthrough and host GPUs are in separate IOMMU groups). Use the script:
@@ -266,6 +265,7 @@
         * Application Launcher: `rofi-wayland`
         * File Manager: `nnn`
         * Editors: `vim`, `neovim`, `nano`
+        * Resource monitoring: `htop`, `nvtop`, `btop`, `rocm-smi-lib`
         * Authentication Agent: `polkit-kde-agent`
         * Clipboard Manager: `wl-clipboard`, `clipse`, `wl-clipboard-x11`
         * Screenshot: `hyprpicker`, `hyprshot`
@@ -532,9 +532,14 @@
     * Test docker install: `sudo docker run -it --rm archlinux bash -c "echo Hello World!"`
         * To clean up test get image id with `sudo docker images` and delete image with `sudo docker rmi <image id>`
     * *Do not add user to `docker` group as it is equivalent to root*
+* CAD:
+    * Kicad: `kicad`, `kicad-library`, `kicad-library-3d`
+        * Disable automatic update checking
 * 3D Printer Slicer: `orca-slicer-bin`
     * Setup: Generic Marlin 0.4mm printer, generic filaments, stealth mode
     * Preferences: check for stable updates only, do not show tip of day
+* Partition management: `gparted`, `udftools`, `xfsprogs`, `gpart`, `xorg-xhost`, `mtools`
+    * Launch with `sudo -E gpated`
 * Media Content:
     * Player: `mpv`
     * MKV Tools: `makemkv`, `mkvtoolnix-gui`, `qt6-multimedia-ffmpeg`
@@ -589,3 +594,5 @@
             * Fix common errors default: Remove empty lines/unused line breaks, Fix overlapping display times, Fix invalid italic tags, Remove unneeded spaces, Remove unneeded periods, Fix commas, Fix double apostrophe characters to a single quote, Add missing quotes, Remove '> >', Fix missing \[ or \( in line, Fix ocmmon OCR errors, Fix uppercase 'i' inside lowercase words, remove space between numbers, Fix alone lowercase 'i' to 'I'
         * *Note: SubtitleEdit batch convert does not work when input files do not have an extension.*
     * Audio: `audacity`
+    * Video Recording: `obs-studio`
+        * Optimize for recording
