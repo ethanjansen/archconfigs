@@ -87,6 +87,9 @@
     * Mount additional "~" drives, fixing user:group ownership to `ethan:ethan` and adding `chattr +C` where applicable
         * Mount partitions with `mount -o subvolid=<id>,subvol=</path/from/default/subvol> <disk/part> <mount point>`.
         * Alternatively, add entries to /etc/fstab and use `mount <mount point>`
+            * btrfs default fstab options: 
+                * SSD: `rw,relatime,ssd,discard=async,space_cache=v2,subvolid=<id>,subvol=/<volname> 0 0`
+                * HDD: `rw,relatime,space_cache=v2,subvolid=<id>,subvol=/<volname> 0 0`
     * Relax PAM faillock by modifying /etc/security/faillock.conf with the following:
         ```
         unlock_time = 600
