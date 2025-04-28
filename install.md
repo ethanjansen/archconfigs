@@ -462,10 +462,6 @@
         * openrazer-daemon uses a dkms driver; linux headers are required to build this. Install `linux-headers` and `linux-lst-headers`.
             * This should automatically build the dkms driver. Reboot.
     * Keyboard: Nothing
-    * Mouse: 
-        * Lighting: static green
-        * DPI: Set all DPI to 800 (need to close window and toggle DPI between changes) except for one setting at 400
-        * Polling rate: 1000 Hz
 * Logitech Peripherals: `solaar`
     * Installation:
         * Ensure user is added to plugdev group
