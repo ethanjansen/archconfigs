@@ -388,7 +388,7 @@
             * If printer is not specified, default is used
 
 ## Additional Software
-* (VS)Code: `code`, `code-marketplace`, `code-features`
+* (VS)Code: `code`
     * Enable wayland rendering: `cp ~/.config/electron-flags.conf ~/.config/code-flags.conf`
 * Browser: `chromium`
     * Add [~/.config/chromium-flags.conf](config/chromium-flags.conf)
