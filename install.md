@@ -312,7 +312,7 @@
             --ozone-platform-hint=auto
             ```
 * Virtual Machine Hypervisor:
-    * Install: `qemu-desktop`, `libvirt`, `edk2-ovmf`, `virt-manager`, `dnsmasq`, `iptables-nft` and `looking-glass`
+    * Install: `qemu-desktop`, `libvirt`, `edk2-ovmf`, `virt-manager`, `dnsmasq`, `iptables-nft`, `swtpm`, and `looking-glass`
     * Create /mnt/vms/qemu, /mnt/vms/qemu/vdisks
         * Disable cow for vdisks: `chattr +C /mnt/vms/qemu/vdisks`
         * Convert old Vmware vmdk disks to qcow2: `qemu-img convert -cpf vmdk -O qcow2 {input.vmdk} {output.qcow2}`
@@ -352,6 +352,7 @@
                 * Go to "Display Spice" and set "Listen Type" to "None". Also tick the "OpenGL" checkbox and select the appropriate renderer.
                 * Click on "Video Virtio" and tick "3D Acceleration".
             * Install virtio guest tools for windows: https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/
+            * Install spice guest tools on linux: `spice-vdagent`
 
 * Printers:
     * Install: `cups-pdf`, `hplip`, and `foomatic-db-ppds`
