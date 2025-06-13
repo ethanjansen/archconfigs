@@ -206,8 +206,9 @@
         wpctl settings device.routes.default-sink-volume 1.0
         wpctl settings --save device.routes.default-sink-volume 1.0
 
-        # could just check the ID values before hand with `wpctl status`
-        wpctl set-default $(wpctl status | grep "\. rnnoise_source" | grep -Eo '[0-9]*')
+        # Check the ID values before hand with `wpctl status` for "rnnoice_source" (default source) and "Digital Stereo" (default sink)
+        wpctl set-default {default source}
+        wpctl set-default {default sink}
 
         wpctl set-volume $(wpctl status | grep "\. Digital Stereo" | grep -Eo '[0-9]*') 1.0
         ```
