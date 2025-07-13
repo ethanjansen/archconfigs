@@ -70,3 +70,17 @@
 * Navigate between windows: `<C-w><C-w>`
 * List commands for command completion: `<C-d>`
 
+## mpv
+* Change tracks:
+    * Subtitles: `j`
+    * Audio: `#` 
+
+## nnn
+* Display preview: `;p`
+
+## Kitty
+* Default modifier "kitty_mod": `ctrl+shift`
+* New split window: `kitty_mod+enter`
+* Close split window: `kitty_mod+d`
+* Resize split: `kitty_mod+` left, right, down, up
+* Change between horizonal/vertical split: `kitty_mod+r`

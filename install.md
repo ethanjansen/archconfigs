@@ -268,7 +268,7 @@
         * Status bar: `waybar`, `otf-font-awesome`
         * Notifications: `mako`
         * Application Launcher: `rofi-wayland`
-        * File Manager: `nnn`
+        * File Manager: `nnn`, `tree`, `mediainfo`, `imagemagick`
         * Editors: `vim`, `neovim`, `nano`
         * Resource monitoring: `htop`, `nvtop`, `btop`, `rocm-smi-lib`
         * Authentication Agent: `polkit-kde-agent`
@@ -282,8 +282,21 @@
             * Generate default `rofi` config by running `rofi -dump-config > ~/.config/rofi/config.rasi`
             * Apply theme by appending: `@theme "/usr/share/rofi/themes/Arc-Dark.rasi"`
             * Set font: uncomment font line under "configuration", chaging it to: `font: "JetBrainsMono Nerd Font 9";`
-        * `kitty` theming:
-            * Set font to "JetBrains Mono Nerd Font". Leave the rest auto (uncommented). Set size to 9.0.
+        * `kitty` config: [kitty.conf](./config/kitty/kitty.conf)
+            * Theming:
+                * Set `font_family` to "JetBrainsMono Nerd Font". Leave the rest auto (uncommented). Set `font_size` to 9.
+            * Change keybinds:
+                * Close window: `kitty_mod+d`
+                * start_resizing_window prompt: `kitty_mod+f4`
+                * Change vertical/horizonal split (New): `kitty_mod+r`
+                * Resize active window:
+                    * narrower: `kitty_mod+left`
+                    * wider: `kitty_mod+right`
+                    * taller: `kitty_mod+up`
+                    * shorder: `kitty_mod+down`
+            * `nnn` support:
+                * `allow_remote_control yes`
+                * `listen_on unix:@mykitty`
         * `nvim` theming:
             * Install `vscode-json-languageserver`, `npm`, `unzip`
             * Clone NvChad: `git clone https://github.com/NvChad/starter ~/.config/nvim` 
@@ -297,6 +310,14 @@
                     ```
             * On first run of `nvim` let plugins install and update (Use the "U" menu to update). Close/Restart `nvim`.
             * Inside `nvim` execute `:MasonInstallAll` to update/install all LSP servers automatically. Close/Restart `nvim`.
+        * `nnn` config:
+            * Install plugins: `sh -c "$(curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs)"`
+            * Configure with ".basrch" environment variables: [.bashrc](./config/bashrc)
+                ```
+                export NNN_OPTS="deH"
+                export NNN_FIFO="/tmp/nnn.fifo"
+                export NNN_PLUG="p:preview-tui"
+                ```
     * GTK/QT theming:
         * For GTK settings:
             * Set font to "JetBrainsMono Nerd Font Regular" size 9
@@ -598,3 +619,8 @@
     * Audio: `audacity`
     * Video Recording: `obs-studio`
         * Optimize for recording
+* File/Photo/Video Comparison Tool: `czkawka`
+* Android File Transfer: `android-file-transfer`
+    * Usage: `aft-mtp-cli`
+        * Use `?` to get help
+        * Alternatively use `aft-mtp-mount <dir>` to mount android device to "<dir>" with FUSE
