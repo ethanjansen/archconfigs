@@ -426,9 +426,9 @@
 * Office: `libreoffice-fresh`, `libreoffice-extension-texmaths`, `libreoffice-extension-writer2latex`, `hunspell`, `hunspell-en_us`, `hyphen`, `hyphen-en`, `texlive-latexextra`, `texlive-fontsrecommended`, `texlive-bibtexextra`, `texlive-luatex`, `biber`, `aspell`, `aspell-en`
 * Shell Check: `shellcheck`
 * 7zip: `p7zip`
-* Discord: `webcord`, (`electron31` to fix issue described below)
-    * Screen share crashes on default electron version; `electron31` works: https://github.com/SpacingBat3/WebCord/issues/582
-        * To always use `electron31`, edit /usr/bin/webcord: `sudo sed -Ei 's/electron[0-9]{2}/electron32/g' /usr/bin/webcord`
+* Discord: `discord`
+    * Config: [~/.config/discord/settings.json](config/discord/settings.json)
+        * Use `"SKIP_HOST_UPDATE": true` to prevent update messages on startup
 * Spotify:
     * Import spotify GPG key:
         * Check [aur package](https://aur.archlinux.org/packages/spotify) for latest GPG to import
