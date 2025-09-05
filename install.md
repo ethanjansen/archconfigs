@@ -427,7 +427,7 @@
 * Shell Check: `shellcheck`
 * 7zip: `p7zip`
 * Discord: `discord`
-    * Config: [~/.config/discord/settings.json](config/discord/settings.json)
+    * Config: [~/.config/discord/settings.json](./config/discord/settings.json)
         * Use `"SKIP_HOST_UPDATE": true` to prevent update messages on startup
 * Spotify:
     * Import spotify GPG key:
@@ -537,6 +537,26 @@
             * For instances crashing due to libopenal: set environment variable: `ALSOPT_DRIVERS=pulse`
         * For each modpack instance create and symlink to /mnt/gameBackups/backups/minecraft/{instance}/ from /mnt/games/prismLauncher/instances/{instance}/minecraft/backups then ensure the ftbbackups location is set to nothing (`S:folder=`) in {instance folder}/minecraft/config/ftbutilities.cfg and {instance folder}/minecraft/config/ftbbackups.cfg
             * When creating a final backup of an instance, delete the /mnt/games/prismLauncher/instances/{instance}/minecraft/backups symlink, delete the automatic backups, and store an entire xz backup of /mnt/games/prismLauncher/instances/{instance} 
+    * CloneHero:
+        * Install:
+            * Create folders: /mnt/games/cloneHero/ /mnt/games/cloneHero/data/clonehero/ /mnt/games/cloneHero/data/Clone\ Hero/
+            * Download tarball from [CloneHero Website](https://clonehero.net)
+            * Extract: `tar -xvf {path/to}/CloneHero-linux.tar.xz -C /mnt/games/cloneHero`
+            * Move files: `mv /mnt/games/cloneHero/clonehero-linux/* /mnt/games/cloneHero/ && rmdir /mnt/games/cloneHero/clonehero-linux`
+            * Create symlinks according to [dataLocationMoves](./gameConfigs/dataLocationMoves.md)
+            * Make executable: `chmod +x /mnt/games/cloneHero/clonehero`
+            * Copy start script: `cp ./gameConfigs/cloneHero/startCloneHero.sh /mnt/games/cloneHero/`
+        * Run:
+            * Use [start script](./gameConfigs/cloneHero/startCloneHero.sh) to prevent black screen glitch after 3 songs
+        * [Settings](./gameConfigs/specialLinuxSettings.md)
+        * Custom Songs:
+            * Sync with NextCloud using [script](./gameConfigs/cloneHero/syncSongs.sh)
+                * Requires `davfs2`
+                    * Config: [/etc/davfs2/davfs2.conf](./config/davfs2/davfs2.conf)
+                        * *Bug Note: Settings `buf_size 64` or more is required to read from webDAV on linux 6.16*
+                * *Note: This is slow*
+            * Scan for new songs in CloneHero settings.
+        * *Bug Note: Calibration tool has muted audio*
 * Docker: `docker`, `docker-compose`
     * Enable docker socket: `sudo systemctl enable docker.socket`
     * Ensure the docker btrfs subvolume is mounted (and in fstab) at /var/lib/docker
