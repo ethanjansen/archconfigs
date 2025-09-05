@@ -20,3 +20,10 @@
 ### Celeste
 
 * ~/.local/share/Celeste/
+
+### Clone Hero
+
+* Original Location: ~/.config/unity3d/srylain\ Inc_/Clone\ Hero/
+    * Moved to: /mnt/games/cloneHero/data/Clone\ Hero/
+* Original Location: ~/.clonehero/
+    * Moved to: /mnt/games/cloneHero/data/clonehero/
