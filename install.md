@@ -556,6 +556,9 @@
                         * *Bug Note: Settings `buf_size 64` or more is required to read from webDAV on linux 6.16*
                 * *Note: This is slow*
             * Scan for new songs in CloneHero settings.
+            * Sync with Windows PC with [script](./gameConfigs/cloneHero/syncHandheld.sh)
+                * First create song directory structure and upload [remote script](./gameConfigs/cloneHero/finishHandheldSync.sh)
+                * Requires wsl on Windows
         * *Bug Note: Calibration tool has muted audio*
 * Docker: `docker`, `docker-compose`
     * Enable docker socket: `sudo systemctl enable docker.socket`
