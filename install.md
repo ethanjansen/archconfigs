@@ -267,7 +267,7 @@
         * Idle Manager: `hypridle`
         * Status bar: `waybar`, `otf-font-awesome`
         * Notifications: `mako`
-        * Application Launcher: `rofi-wayland`
+        * Application Launcher: `rofi`
         * File Manager: `nnn`, `tree`, `mediainfo`, `imagemagick`
         * Editors: `vim`, `neovim`, `nano`
         * Resource monitoring: `htop`, `nvtop`, `btop`, `rocm-smi-lib`
@@ -480,15 +480,29 @@
                 * Show album
                 * Show icons
                 * Enable song change animation
-* Razer Peripherals: `openrazer-daemon`, `razergenie`
+* **UNUSED** Razer Peripherals: `openrazer-daemon`, `razergenie` 
     * Installation:
         * Add user to plugdev group: `sudo gpasswd -a $USER plugdev`; sign out after this.
-        * openrazer-daemon uses a dkms driver; linux headers are required to build this. Install `linux-headers` and `linux-lst-headers`.
+        * openrazer-daemon uses a dkms driver; linux headers are required to build this. Install `linux-headers` and `linux-lts-headers`.
             * This should automatically build the dkms driver. Reboot.
     * Keyboard: Nothing
+* Vial Peripherals:
+    * Configuration:
+        * Add udev rules to /etc/udev/rules.d/99-vial.rules, replacing Vendor and Product id's for specific keyboard using `lsusb`:
+            ```
+            # Name of your keyboard
+            KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{serial}=="*vial:f64c2b3c*", ATTRS{idVendor}=="XXXX", ATTRS{idProduct}=="XXXX", MODE="0660", GROUP="plugdev", TAG+="uaccess", TAG+="udev-acl"
+            ```
+        * Reload udev: `sudo udevadm control --reload-rules && sudo udevadm trigger`
+        * Ensure user is added to plugdev group: `sudo gpasswd -a $USER plugdev`; sign out after this.
+        * Configure devices using [vial.rocks](https://vial.rocks) using chromium browser
+    * Keyboard:
+        * Modern Model F F122:
+            * Diagnostics: `leyden-jar-diagnostic-tool-git`
+                * *Note: Run with `leyden-jar-diagnostic-tool` from shell. Cannot quit window because keyboard will not work*
 * Logitech Peripherals: `solaar`
     * Installation:
-        * Ensure user is added to plugdev group
+        * Ensure user is added to plugdev group: `sudo gpasswd -a $USER plugdev`; sign out after this.
         * Reload udev rules: `sudo udevadm contorl --reload-rules`
         * Add startup to hyprland config: `exec-once = solaar -w hide --restart-on-wake-up`
     * Mouse:
