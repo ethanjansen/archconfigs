@@ -10,6 +10,7 @@
 ## Package Management
 * List local packages: `pikaur -Qn`
 * List foreign (AUR) packages: `pikaur -Qqm`
+* List unused dependencies: `pikaur -Qdtq`
 * Remove packages and its unused dependencies: `pikaur -Rs`
 * Find packages requiring \<packages\>: `pikaur -Qi <package> | grep Required`
 
