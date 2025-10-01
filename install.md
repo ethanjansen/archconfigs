@@ -496,8 +496,12 @@
         * Reload udev: `sudo udevadm control --reload-rules && sudo udevadm trigger`
         * Ensure user is added to plugdev group: `sudo gpasswd -a $USER plugdev`; sign out after this.
         * Configure devices using [vial.rocks](https://vial.rocks) using chromium browser
+            * Make sure to backup configuration!
+            * Refer to [keyboard scan codes](https://www.usb.org/sites/default/files/hut1_6.pdf#chapter.10), [media scan codes](https://www.usb.org/sites/default/files/hut1_6.pdf#chapter.15), and [xkb keysyms](https://github.com/xkbcommon/libxkbcommon/blob/master/include/xkbcommon/xkbcommon-keysyms.h)
+        * Use `wev` to get keyboard codes for programming Hyprland
     * Keyboard:
         * Modern Model F F122:
+            * [Layout](./config/modelF122Layout.vial)
             * Diagnostics: `leyden-jar-diagnostic-tool-git`
                 * *Note: Run with `leyden-jar-diagnostic-tool` from shell. Cannot quit window because keyboard will not work*
 * Logitech Peripherals: `solaar`
