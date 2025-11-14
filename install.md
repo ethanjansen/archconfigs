@@ -360,6 +360,7 @@
         * Configure virtual networks:
             * Delete default network
             * Configure NAT network, named "NAT", with DHCP serving 192.168.122.0/24
+            * Configure Isolated network, named "Private", with IPv4 disabled
             * Configure Bridge network, named "Bridge" connected to br0 (created manually during network configuration). Use the custom xml (uuid should be added automatically if created with virt-manager):
                 ```
                 <network>
