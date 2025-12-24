@@ -78,6 +78,7 @@
 
 ## nnn
 * Display preview: `;p`
+* Batch rename: `r`
 
 ## Kitty
 * Default modifier "kitty_mod": `ctrl+shift`
