@@ -255,7 +255,7 @@
     * Install hyprland: `hyprland`
     * Install Display Manager/Lockscreen: `greetd`, `hyprlock`
         * Enable `greetd.service` to start on boot
-        * To enable autologin: change /etc/greetd/config.toml to execute the command `Hyprland` as user `ethan`
+        * To enable autologin: change /etc/greetd/config.toml to execute the command `start-hyprland` as user `ethan`
         * Ensure `hyprlock` is set to run-once in hyprland.conf
     * Install additional software (https://wiki.hyprland.org/Useful-Utilities/Must-have/):
         * Fonts: `nerd-fonts`
