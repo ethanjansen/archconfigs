@@ -3,7 +3,6 @@ Name=br0
 
 [Network]
 DHCP=ipv4
-DNS=192.168.1.2
 
 [DHCPv4]
-UseDNS=false
+UseDNS=true
