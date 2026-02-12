@@ -15,7 +15,7 @@
             * Can get subvolume id and path using `sudo btrfs subvolume list -t` when the btrfs disk/parition/subvolume is mounted.
     * mount partitons in "~" after install.
 * Install Base Packages
-    * `pacstrap -K /mnt base linux linux-lts linux-firmware amd-ucode btrfs-progs exfatprogs sudo nano vim man-db man-pages texinfo screen git rsync openssh which fastfetch usbutils`
+    * `pacstrap -K /mnt base linux linux-lts linux-firmware amd-ucode btrfs-progs exfatprogs sudo nano vim man-db man-pages texinfo screen git rsync openssh which fastfetch usbutils pv`
 * Initial Config
     * `genfstab -U /mnt >> /mnt/etc/fstab`
     * `arch-chroot /mnt`
