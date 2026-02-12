@@ -602,7 +602,8 @@
     * Setup: Generic Marlin 0.4mm printer, generic filaments, stealth mode
     * Preferences: check for stable updates only, do not show tip of day
 * Partition management: `gparted`, `udftools`, `xfsprogs`, `gpart`, `xorg-xhost`, `mtools`
-    * Launch with `sudo -E gpated`
+    * Launch with `sudo -E gparted`
+* HDD tools: `smartmontools`, `nvme-cli`
 * Media Content:
     * Player: `mpv`
     * MKV Tools: `makemkv`, `mkvtoolnix-gui`, `qt6-multimedia-ffmpeg`
