@@ -342,16 +342,19 @@
     * Set `firewall_backend="iptables"` in /etc/libvirt/network.conf
     * Add user to libvirt and wheel groups:
         * `usermod -a -G libvirt ethan; usermod -a -G wheel ethan`
+    * Change group ownership of /mnt/vms/qemu: `chown ethan:libvirt-qemu /mnt/vms/qemu`
+        * Apply group ownsership recurively to /mnt/vms/qemu/vdisks: `chown -R ethan:libvirt-qemu /mnt/vms/qemu/vdisks`
+        * Also recursively set all directory permssions in /mnt/vms/qemu/vms to 775, and all (non-executable) file permissions to 664
+        * Do the same with /mnt/vms/ISOs
+    * Move libvirt files to /mnt/vms/qemu (as root):
+        ```
+        mv /etc/libvirt /mnt/vms/qemu/etc-libvirt
+        mv /var/lib/libvirt /mnt/vms/qemu/var-libvirt
+        ln -s /mnt/vms/qemu/etc-libvirt /etc/libvirt
+        ln -s /mnt/vms/qemu/var-libvirt /var/lib/libvirt
+        ```
     * Enable `libvirtd.service`; also start `libvirtd.service` and `virtlogd.service`
     * Reboot.
-    * Change group ownership of /mnt/vms/qemu: `chown -R ethan:libvirt-qemu /mnt/vms/qemu`
-        * Also recursively set all directory permssions in /mnt/vms/qemu to 775, and all (non-executable) file permissions to 664
-        * Do the same with /mnt/vms/ISOs
-    * Link to libvirt VM config location:
-        ```
-        ln -s /etc/libvirt/qemu /mnt/vms/qemu/configs
-        ln -s /etc/libvirt/storage /mnt/vms/qemu/storageConfigs
-        ```
     * In virt-manager:
         * Configure /mnt/vms/qemu/vdisks storage pool:
             * Under Storage, stop the default pool and uncheck autostart on boot (this cannot be deleted as it will be recreated on boot for whatever reason).
