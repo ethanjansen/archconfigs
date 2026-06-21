@@ -415,6 +415,19 @@
             * Can also pipe into `lp`
             * If printer is not specified, default is used
 
+* Monitor VRR Fix:
+    * *Note: Without this monitors randomly drop out for a split second due to VRR going below what the panel supports. This is a known issue (on Arch Wiki) and may be related to using Freesync on a Gsync Ultimate monitor.*
+    * Copy original monitor EDID tables from /sys/class/drm/card1-DP-{n}/edid
+    * Using AW Edid Editor in Windows (VM) modify the copied EDID tables:
+        * Increase minimum refresh rate located at "EDID Base -> Detailed Descriptor -> Blcok 3 -> Display Range Limits -> Min V. Rate (Hz)"
+            * Set above 11: `16`
+    * Copy modified EDID tables to /usr/lib/firmware/edid/
+    * Add files to initramfs: `FILES=(/usr/lib/firmware/edid/card1-DP-1-16mhzmin.bin /usr/lib/firmware/edid/card1-DP-2-16mhzmin.bin /usr/lib/firmware/edid/card1-DP-3-16mhzmin.bin)` in /etc/mkinitcpio.conf
+    * Add EDID entries to bootloader: `drm.edid_firmware=DP-1:edid/card1-DP-1-16mhzmin.bin,DP-2:edid/card1-DP-2-16mhzmin.bin,DP-3:edid/card1-DP-3-16mhzmin.bin` in `GRUB_CMDLINE_LINUX_DEFAULT` within /etc/default/grub
+    * Rebuild initramfs: `mkinitcpio -P`
+    * Rebuild grub: `grub-mkconfig -o /boot/grub/grub.cfg`
+    * Reboot
+
 ## Additional Software
 * Browser: `chromium`
     * Add [~/.config/chromium-flags.conf](config/chromium-flags.conf)

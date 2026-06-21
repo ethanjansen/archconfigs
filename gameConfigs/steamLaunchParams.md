@@ -21,3 +21,7 @@
         * install.sh: `ln -s /mnt/games/mods/gtaV/* /mnt/games/SteamLibrary/steamapps/common/Grand\ Theft\ Auto\ V/`
         * uninstall.sh `find /mnt/games/SteamLibrary/steamapps/common/Grand\ Theft\ Auto\ V/ -maxdepth 1 -type l -lname "/mnt/games/mods/gtaV/*" -delete` 
 * Special saves backed up to /mnt/gameBackups/backups/gtaV/
+
+### Lego Star Wars: The Skywalker Saga
+
+* Enable HDR, advanced launch options: `ENABLE_HDR_WSI=1 gamescope --fullscreen -w 3840 -h 2160 --hdr-enabled --hdr-debug-force-output --hdr-sdr-content-nits 1400 --adaptive-sync -- env ENABLE_GAMESCOPE_WSI=1 DXVK_HDR=1 DISABLE_HDR_WSI=1 %command%`
