@@ -237,6 +237,7 @@
             ```
         * In /etc/modprobe.d/amdgpu.conf add: `blacklist radeon`
         * In /etc/mkinitcpio.conf, ensure `modconf` is included as a HOOK and that `vfio_pci vfio vfio_iommu_type1 amdgpu` (ensure `vfio` modules precede `amdgpu` and that `radeon` is not included) are included as MODULE
+            * *Note: For temporary GPU downgrade `vfio` is not being used so only `amdgpu` is included in MODULE*
         * Regenerate initramfs and reboot: `sudo mkinitcpio -P`
         * Ensure drivers are configured correctly with `lspci -nnk -d {xx:xx}`
             * Where `{xx:xx}` corresponds to the GPU {vendor}:{device}
@@ -346,13 +347,6 @@
         * Apply group ownsership recurively to /mnt/vms/qemu/vdisks: `chown -R ethan:libvirt-qemu /mnt/vms/qemu/vdisks`
         * Also recursively set all directory permssions in /mnt/vms/qemu/vms to 775, and all (non-executable) file permissions to 664
         * Do the same with /mnt/vms/ISOs
-    * Move libvirt files to /mnt/vms/qemu (as root):
-        ```
-        mv /etc/libvirt /mnt/vms/qemu/etc-libvirt
-        mv /var/lib/libvirt /mnt/vms/qemu/var-libvirt
-        ln -s /mnt/vms/qemu/etc-libvirt /etc/libvirt
-        ln -s /mnt/vms/qemu/var-libvirt /var/lib/libvirt
-        ```
     * Enable `libvirtd.service`; also start `libvirtd.service` and `virtlogd.service`
     * Reboot.
     * In virt-manager:
@@ -380,6 +374,7 @@
                 * Click on "Video Virtio" and tick "3D Acceleration".
             * Install virtio guest tools for windows: https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/
             * Install spice guest tools on linux: `spice-vdagent`
+            * Replacing libvirt folders in /etc/ and /var/ with symlinks does not get preserved after updates. Don't do it.
 
 * Printers:
     * Install: `cups-pdf`, `hplip`, and `foomatic-db-ppds`

@@ -16,3 +16,7 @@
     * Devices in same IOMMU: None
 * PCI ID: 0000:0d:00.0
 * Device ID: 1002:731f
+
+
+# Temporary GPU Downgrade
+* Currently only using RX 5700 so it is not disabled for passthrough and has the `ppfeaturemask` applied
