@@ -336,7 +336,7 @@
             --ozone-platform-hint=auto
             ```
 * Virtual Machine Hypervisor:
-    * Install: `qemu-desktop`, `libvirt`, `edk2-ovmf`, `virt-manager`, `dnsmasq`, `iptables-nft`, `swtpm`, and `looking-glass`
+    * Install: `qemu-desktop`, `libvirt`, `edk2-ovmf`, `virt-manager`, `dnsmasq`, `iptables`, `swtpm`, and `looking-glass`
     * Create /mnt/vms/qemu, /mnt/vms/qemu/vdisks
         * Disable cow for vdisks: `chattr +C /mnt/vms/qemu/vdisks`
         * Convert old Vmware vmdk disks to qcow2: `qemu-img convert -cpf vmdk -O qcow2 {input.vmdk} {output.qcow2}`
