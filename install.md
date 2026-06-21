@@ -30,7 +30,7 @@
 * Install Boot Loader
     * `pacman -S grub efibootmgr`
     * `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB`
-    * Edit /etc/default/grub by removing `quiet` and adding `rootflags=subvol=root ipv6.disable_ipv6=1` to `GRUB_CMDLINE_LINUX_DEFAULT`. Also uncomment `GRUB_DISABLE_SUBMENU=y` and add `GRUB_TOP_LEVEL="/boot/vmlinuz-linux"`.
+    * Edit /etc/default/grub by removing `quiet` and adding `rootflags=subvol=root` to `GRUB_CMDLINE_LINUX_DEFAULT`. Also uncomment `GRUB_DISABLE_SUBMENU=y` and add `GRUB_TOP_LEVEL="/boot/vmlinuz-linux"`.
     * Add the following to /etc/grub.d/40_custom:
      ```
     menuentry "System Shutdown" {

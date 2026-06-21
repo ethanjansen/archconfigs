@@ -3,6 +3,14 @@ Name=br0
 
 [Network]
 DHCP=ipv4
+IPV6AcceptRA=true
+IPv6PrivacyExtensions=true
+IPv6LinkLocalAddressGenerationMode=stable-privacy
 
 [DHCPv4]
 UseDNS=true
+
+[IPv6AcceptRA]
+Token=prefixstable
+UseDNS=true
+DHCPv6Client=false
